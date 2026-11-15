@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": 1794745881,
+  "generatedAt": 1794747341,
   "entries": [
     {
       "repositoryID": 1458697776,
@@ -53,6 +53,19 @@
       "sha256": "7c6f2679b32520992f6ca34623aabd41579622e2eb48430fbc469066236a45c5",
       "assetSize": 9300,
       "assetURL": "https://github.com/peiel/quicklauncher-timestamp-plugin/releases/download/v1.0.0/timestamp-v1.0.0.quicklauncher.json"
+    },
+    {
+      "repositoryID": 1458794884,
+      "fullName": "peiel/quicklauncher-text-stats-plugin",
+      "description": "QuickLauncher 文本统计插件",
+      "repositoryURL": "https://github.com/peiel/quicklauncher-text-stats-plugin",
+      "releaseID": 446057591,
+      "assetID": 750989287,
+      "tag": "v1.0.0",
+      "commit": "9a38a814fbc074c04168c90dfacb6e5ee2eb8736",
+      "sha256": "de669a245244532dea10e2359d10f60539b9fc21a6ea69a05f6a995cdef99384",
+      "assetSize": 7881,
+      "assetURL": "https://github.com/peiel/quicklauncher-text-stats-plugin/releases/download/v1.0.0/text-stats.quicklauncher.json"
     }
   ]
 }
