@@ -26,6 +26,9 @@ function example(name) {
 }
 const manifestText = example('manifest');
 const manifest = JSON.parse(manifestText);
+const passiveTrigger = JSON.parse(example('passive-trigger'));
+assert.equal(passiveTrigger.type, 'characterSet');
+assert.deepEqual(passiveTrigger.requiredCharacterGroups, ['0123456789', '+-*/×÷']);
 assert.equal(manifest.input, 'arguments');
 assert.equal(manifest.acceptsSelectedText, true);
 assert.equal(manifest.entry, 'main.py');
@@ -54,6 +57,32 @@ try {
   assert.equal(asset.version, 1);
   assert.deepEqual(asset.files.map((file) => file.path).sort(), ['main.py', 'manifest.json']);
   assert.equal(Buffer.from(asset.files.find((file) => file.path === 'main.py').data, 'base64').toString(), script);
+
+  const packWith = (changes) => {
+    fs.rmSync(output, {force: true});
+    fs.writeFileSync(path.join(plugin, 'manifest.json'), JSON.stringify({...manifest, ...changes}));
+    return spawnSync('python3', [path.join(root, 'tools/package_github_plugin.py'), plugin, output], {encoding: 'utf8'});
+  };
+  assert.equal(packWith({passiveTrigger}).status, 0);
+  const invalidTriggers = [
+    'characterSet', {}, {...passiveTrigger, type: 'regex'},
+    {...passiveTrigger, allowedCharacters: ''},
+    {...passiveTrigger, allowedCharacters: 'x'.repeat(129)},
+    {...passiveTrigger, allowedCharacters: '1+\n'},
+    {...passiveTrigger, allowedCharacters: '1+\u2028'},
+    {...passiveTrigger, allowedCharacters: '1+\u200b'},
+    {...passiveTrigger, requiredCharacterGroups: []},
+    {...passiveTrigger, requiredCharacterGroups: ['1'].concat(Array(8).fill('1'))},
+    {...passiveTrigger, requiredCharacterGroups: ['']},
+    {...passiveTrigger, requiredCharacterGroups: ['1'.repeat(129)]},
+    {...passiveTrigger, requiredCharacterGroups: ['z']},
+    {...passiveTrigger, requiredCharacterGroups: '1'},
+  ];
+  for (const invalid of invalidTriggers) {
+    assert.notEqual(packWith({passiveTrigger: invalid}).status, 0, JSON.stringify(invalid));
+    assert.equal(fs.existsSync(output), false);
+  }
+  assert.notEqual(packWith({input: 'passwordLength', acceptsSelectedText: false, passiveTrigger}).status, 0);
 } finally {
   fs.rmSync(tmp, {recursive: true, force: true});
 }

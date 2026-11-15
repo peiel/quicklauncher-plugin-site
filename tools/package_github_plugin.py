@@ -123,6 +123,23 @@ def validate_manifest(entries: list[dict]) -> None:
                 or (selected_text is not None and not isinstance(selected_text, bool))
                 or (selected_text is True and input_type != "arguments")):
             raise ValueError
+        passive_trigger = manifest.get("passiveTrigger")
+        if passive_trigger is not None:
+            if not isinstance(passive_trigger, dict) or input_type != "arguments":
+                raise ValueError
+            allowed = passive_trigger.get("allowedCharacters")
+            groups = passive_trigger.get("requiredCharacterGroups")
+
+            def valid_characters(value: object) -> bool:
+                return (isinstance(value, str) and 1 <= len(value) <= 128
+                        and all(unicodedata.category(character) not in {"Cc", "Cf"}
+                                and character not in "\u2028\u2029"
+                                and not 0xD800 <= ord(character) <= 0xDFFF for character in value))
+
+            if (passive_trigger.get("type") != "characterSet" or not valid_characters(allowed)
+                    or not isinstance(groups, list) or not 1 <= len(groups) <= 8
+                    or any(not valid_characters(group) or not set(group).issubset(allowed) for group in groups)):
+                raise ValueError
         if manifest["runtime"] == "executable" and not indexed[entry]["executable"]:
             raise ValueError("executable 类型的入口必须具有执行权限")
     except (ValueError, TypeError, UnicodeDecodeError, json.JSONDecodeError) as exc:
