@@ -151,6 +151,7 @@ print(json.dumps(result, ensure_ascii=False))</code></pre>
           <tr><td><code>scheduleReminder</code></td><td>由应用安排一次系统通知；<code>seconds</code> 为 1–2,592,000 的整数（最长 30 天）。</td><td><code>{"version":1,"action":"scheduleReminder","text":"喝水","seconds":600}</code></td></tr>
         </tbody></table></div>
         <p>除 <code>list</code> 外，响应的 <code>text</code> 均不能为空；<code>copyAndShow</code>、<code>error</code> 和提醒文本最多 200 字符且不能含控制字符，提醒文本不能仅为空白。触发词预览中的 <code>copy</code> 文本同样最多 200 字符且不能含控制字符。<code>list</code> 的 <code>items</code> 必须包含 1–10 项；每项的 <code>title</code>、<code>subtitle</code> 和 <code>text</code> 均为必填字符串，不能仅为空白、不能含控制字符或 Unicode 换行符（包括 U+2028、U+2029），且各不超过 200 字符。用户上下选择后按回车，应用复制对应项的 <code>text</code> 并关闭面板，不会重新运行脚本；普通执行或被动触发返回 <code>list</code> 不会复制或执行副作用。多项预览需要包含该能力的新版本 QuickLauncher，官网发行版 1.4 及更早版本不支持。脚本执行超时为 5 秒，标准输出上限 65,536 字节；超限或 JSON 无效将被拒绝。</p>
+        <p>列表项可选提供稳定的 <code>id</code>，如 <code>datetime_chinese</code>。ID 须为 1–64 个 ASCII 字符，以字母或数字开头，其余只能是字母、数字、点、下划线或连字符；同一列表内不得重复，非法或重复的 ID 会使整个列表被拒绝。使用固定 ID，不要将日期、时间、查询或其他用户数据放入 ID。支持记忆选择的新版本在成功复制后，只在本机按插件保存所选 ID，下次将匹配项排在第一位；其余项保留原顺序，保存的 ID 不存在时显示原顺序。卸载插件或清除使用与查询记录时会删除相应选择记录。官网发行版 1.5 会忽略 ID 并保留原顺序。</p>
       </section>
 
       <section class="docs-section" id="capabilities" aria-labelledby="capabilities-title">
