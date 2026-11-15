@@ -6,7 +6,7 @@
   <meta name="color-scheme" content="light">
   <meta name="description" content="了解如何在 QuickLauncher 中审核、安装并启用插件。">
   <title>安装指南 · QuickLauncher 插件目录</title>
-  <link rel="stylesheet" href="styles.css?v=20261115-4">
+  <link rel="stylesheet" href="styles.css?v=20261115-5">
 </head>
 <body>
   <header class="topbar">
@@ -27,20 +27,49 @@
   <main class="layout catalog-layout install-page">
     <div class="content">
       <div class="eyebrow"><span class="eyebrow-dot"></span> QUICKLAUNCHER / INSTALLATION</div>
-      <div class="intro"><div><h1>安装指南</h1><p>发现、审查并启用你的 QuickLauncher 插件。</p></div></div>
-      <section class="details" id="install" aria-labelledby="install-heading">
-        <div class="details-heading"><div><p class="section-label">GET STARTED</p><h2 id="install-heading">安装插件</h2></div></div>
-        <p class="details-intro">点击「在 QuickLauncher 中打开」，应用会从 GitHub 获取插件并展示审核内容；确认后才会安装。浏览器可能会询问是否允许打开应用。</p>
-        <div class="install-grid">
-          <ol class="steps">
-            <li><span class="step-number">01</span><div><strong>在 QuickLauncher 中打开</strong><p>前往<a href="./">插件目录</a>，点击插件卡片上的「在 QuickLauncher 中打开」，并在浏览器提示时允许打开应用。</p></div></li>
-            <li><span class="step-number">02</span><div><strong>审查并安装</strong><p>在 QuickLauncher 中检查来源、版本和文件变化，确认后安装。</p></div></li>
-            <li><span class="step-number">03</span><div><strong>启用并使用</strong><p>安装后在「已安装」中启用插件；查看插件源码了解使用方法。</p></div></li>
-          </ol>
-          <aside class="security-card"><div class="security-icon" aria-hidden="true">✳</div><h3>使用前了解</h3><p>插件以当前用户身份运行。请只安装信任的代码，并在启用前检查来源和内容。</p></aside>
+      <div class="intro install-intro"><div><h1>安装指南</h1><p>发现、审查并启用你的 QuickLauncher 插件。</p></div></div>
+
+      <div class="install-lead">
+        <div>
+          <p class="section-label">GET STARTED</p>
+          <h2>为你的启动器添加新功能</h2>
+          <p>从插件目录选择需要的功能，在应用中检查来源和内容，确认后即可安装。</p>
         </div>
-        <p class="manual-install">无法打开应用？请确认已安装新版 QuickLauncher，或在「设置 → 脚本与插件 → 发现插件」中搜索对应 GitHub 仓库名，再选择「查看并安装」。计算器和提醒插件需要新版 QuickLauncher。</p>
-      </section>
+        <a class="install-browse" href="./">浏览插件目录 <span aria-hidden="true">↗</span></a>
+      </div>
+
+      <div class="install-guide-grid">
+        <section class="install-panel" id="install" aria-labelledby="install-heading">
+          <div class="install-panel-heading"><div><p class="section-label">HOW IT WORKS</p><h2 id="install-heading">三个步骤，开始使用</h2></div><span class="install-step-count">01 — 03</span></div>
+          <ol class="install-steps">
+            <li>
+              <span class="install-number" aria-hidden="true">01</span>
+              <div><h3>在 QuickLauncher 中打开</h3><p>前往<a href="./">插件目录</a>，点击插件卡片上的「在 QuickLauncher 中打开」。浏览器可能会询问是否允许打开应用。</p></div>
+            </li>
+            <li>
+              <span class="install-number" aria-hidden="true">02</span>
+              <div><h3>审查并安装</h3><p>应用会从 GitHub 获取插件。在 QuickLauncher 中检查来源、版本和文件变化，确认后安装。</p></div>
+            </li>
+            <li>
+              <span class="install-number" aria-hidden="true">03</span>
+              <div><h3>启用并使用</h3><p>插件安装后默认停用，请在「已安装」中启用；查看插件源码了解使用方法。</p></div>
+            </li>
+          </ol>
+        </section>
+
+        <aside class="install-sidebar" aria-label="安装提示">
+          <div class="install-note">
+            <span class="install-note-icon" aria-hidden="true">✳</span>
+            <h2>使用前了解</h2>
+            <p>插件以当前用户身份运行。请只安装信任的代码，并在启用前检查来源和内容。</p>
+          </div>
+          <div class="install-help">
+            <p class="section-label">NEED HELP?</p>
+            <h2>无法打开应用？</h2>
+            <p>请确认已安装新版 QuickLauncher，或在「设置 → 脚本与插件 → 发现插件」中搜索对应 GitHub 仓库名，再选择「查看并安装」。计算器和提醒插件需要新版 QuickLauncher。</p>
+          </div>
+        </aside>
+      </div>
       <footer><span>QuickLauncher 插件目录</span><a href="./">返回插件目录 ↗</a></footer>
     </div>
   </main>
