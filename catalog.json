@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": 1794744387,
+  "generatedAt": 1794745016,
   "entries": [
     {
       "repositoryID": 1458697776,
@@ -33,13 +33,13 @@
       "fullName": "peiel/quicklauncher-reminder-plugin",
       "description": "QuickLauncher 定时提醒插件",
       "repositoryURL": "https://github.com/peiel/quicklauncher-reminder-plugin",
-      "releaseID": 446024149,
-      "assetID": 750854275,
-      "tag": "v1.0.1",
-      "commit": "a142dcd2c5ecafa4875a8fd89824fd72c1fb7ef8",
-      "sha256": "cb75bdf91cf66776096944cad3b442e1d0847fd8402f335a629f8239825508ae",
-      "assetSize": 7847,
-      "assetURL": "https://github.com/peiel/quicklauncher-reminder-plugin/releases/download/v1.0.1/quicklauncher-reminder-1.0.1.quicklauncher.json"
+      "releaseID": 446038477,
+      "assetID": 750900475,
+      "tag": "v1.0.2",
+      "commit": "b12e27a43e88d0c14466effdb438b4610e4391d4",
+      "sha256": "f4772b78ca3156b1fde325f1ba59f79cda83ae7e5afbc6e939ecb94764b2821e",
+      "assetSize": 7883,
+      "assetURL": "https://github.com/peiel/quicklauncher-reminder-plugin/releases/download/v1.0.2/quicklauncher-reminder-1.0.2-verification.quicklauncher.json"
     }
   ]
 }
