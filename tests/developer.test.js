@@ -9,6 +9,7 @@ const page = fs.readFileSync(path.join(root, 'developer.html'), 'utf8');
 const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 assert.match(home, /href="developer\.html">开发者<\/a>/);
 assert.match(page, /href="developer\.html" aria-current="page">开发者<\/a>/);
+assert.match(page, /插件目录<\/a>\s*<a href="\.\/#install">安装指南<\/a>\s*<a class="nav-current" href="developer\.html"/);
 for (const id of ['quickstart', 'manifest', 'protocol', 'capabilities', 'install', 'publish', 'catalog']) {
   assert.ok(page.includes(`id="${id}"`), `缺少 ${id}`);
   assert.ok(page.includes(`href="#${id}"`), `缺少 ${id} 目录链接`);

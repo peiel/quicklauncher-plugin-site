@@ -5,10 +5,8 @@
   const count = document.querySelector('#result-count');
   const status = document.querySelector('#search-status');
   const total = document.querySelector('#plugin-count');
-  const sidebarCount = document.querySelector('#sidebar-count');
-  if (!search || !empty || !count || !status || !total || !sidebarCount) return;
+  if (!search || !empty || !count || !status || !total) return;
   total.textContent = String(cards.length);
-  sidebarCount.textContent = String(cards.length);
   search.addEventListener('input', () => {
     const value = search.value.trim().toLocaleLowerCase();
     let matches = 0;

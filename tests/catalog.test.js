@@ -9,7 +9,7 @@ const cards = [...html.matchAll(/<article class="plugin-card" id="([^"]+)" data-
   .map((match) => ({ id: match[1], dataset: { search: match[2] }, hidden: false }));
 assert.deepEqual(cards.map((card) => card.id), ['password-plugin', 'calculator-plugin', 'reminder-plugin', 'timestamp-plugin']);
 
-const elements = Object.fromEntries(['plugin-search', 'empty-state', 'result-count', 'search-status', 'plugin-count', 'sidebar-count']
+const elements = Object.fromEntries(['plugin-search', 'empty-state', 'result-count', 'search-status', 'plugin-count']
   .map((id) => [id, { value: '', textContent: '', hidden: false }]));
 elements['plugin-search'].addEventListener = (event, handler) => {
   assert.equal(event, 'input');
@@ -21,7 +21,8 @@ const document = {
 };
 vm.runInNewContext(fs.readFileSync(path.join(root, 'app.js'), 'utf8'), { document });
 assert.equal(elements['plugin-count'].textContent, '4');
-assert.equal(elements['sidebar-count'].textContent, '4');
+assert.ok(!html.includes('id="sidebar-count"'));
+assert.match(html, /插件目录<\/a>\s*<a href="#install">安装指南<\/a>\s*<a href="developer\.html">开发者<\/a>/);
 
 function search(query, visible) {
   elements['plugin-search'].value = query;
