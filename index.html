@@ -27,7 +27,7 @@
   <main class="layout">
     <aside class="sidebar" aria-label="目录导航">
       <p class="sidebar-heading">浏览</p>
-      <a class="sidebar-link active" href="#plugins" aria-current="page"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="12" y="3" width="5" height="5" rx="1"/><rect x="3" y="12" width="5" height="5" rx="1"/><rect x="12" y="12" width="5" height="5" rx="1"/></svg>所有插件<span id="sidebar-count">3</span></a>
+      <a class="sidebar-link active" href="#plugins" aria-current="page"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="12" y="3" width="5" height="5" rx="1"/><rect x="3" y="12" width="5" height="5" rx="1"/><rect x="12" y="12" width="5" height="5" rx="1"/></svg>所有插件<span id="sidebar-count">4</span></a>
       <p class="sidebar-heading sidebar-second">了解更多</p>
       <a class="sidebar-link" href="#install"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.7v9.6m-3-3 3 3 3-3M3.5 14v2.2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V14"/></svg>安装指南</a>
       <div class="sidebar-note"><span class="note-dot"></span><span>插件在本机运行。<br>安装前请检查源码。</span></div>
@@ -42,7 +42,7 @@
 
       <section class="catalog" aria-labelledby="catalog-heading">
         <div class="catalog-top">
-          <div><h2 id="catalog-heading">所有插件 <span class="count" id="plugin-count">3</span></h2><p>发现可以在 QuickLauncher 中使用的插件。</p></div>
+          <div><h2 id="catalog-heading">所有插件 <span class="count" id="plugin-count">4</span></h2><p>发现可以在 QuickLauncher 中使用的插件。</p></div>
           <div class="search-wrap"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m12.5 12.5 4 4"/></svg><label class="visually-hidden" for="plugin-search">搜索插件</label><input id="plugin-search" type="search" placeholder="搜索插件" autocomplete="off"></div>
         </div>
         <p class="search-status visually-hidden" id="search-status" role="status" aria-live="polite"></p>
@@ -82,8 +82,20 @@
             <a class="install-guide-link" href="https://github.com/peiel/quicklauncher-reminder-plugin" target="_blank" rel="noopener noreferrer">查看 GitHub 源码 ↗</a>
           </div>
         </article>
+        <article class="plugin-card" id="timestamp-plugin" data-search="时间戳 转换 时间 日期 timestamp unix ts">
+          <div class="plugin-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><rect x="10" y="11" width="28" height="27" rx="5" fill="currentColor" opacity=".16"/><rect x="10" y="11" width="28" height="27" rx="5" stroke="currentColor" stroke-width="2"/><path d="M10 19h28M17 8v6m14-6v6M17 25h5m-5 6h5m5-6h5m-5 6h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="plugin-main">
+            <div class="plugin-title-row"><h3>时间戳转换</h3><span class="version">v1.0.0</span></div>
+            <p class="plugin-summary">输入 ts now 获取当前时间戳，或转换秒、毫秒时间戳为本地日期。</p>
+            <div class="plugin-meta"><span>QuickLauncher</span><span class="meta-dot">·</span><span>Ruby</span><span class="meta-dot">·</span><span>MIT</span><span class="meta-dot">·</span><span>需要新版 QuickLauncher</span></div>
+          </div>
+          <div class="plugin-actions">
+            <a class="plugin-action" href="quicklauncher://install?repo=peiel%2Fquicklauncher-timestamp-plugin">在 QuickLauncher 中打开 <span aria-hidden="true">↗</span></a>
+            <a class="install-guide-link" href="https://github.com/peiel/quicklauncher-timestamp-plugin" target="_blank" rel="noopener noreferrer">查看 GitHub 源码 ↗</a>
+          </div>
+        </article>
         <div id="empty-state" class="empty-state" hidden><strong>没有找到匹配的插件</strong><span>试试其他关键词。</span></div>
-        <div class="catalog-foot"><span>显示 <span id="result-count">3</span> 个插件</span><a href="#install">查看安装说明 <span aria-hidden="true">↗</span></a></div>
+        <div class="catalog-foot"><span>显示 <span id="result-count">4</span> 个插件</span><a href="#install">查看安装说明 <span aria-hidden="true">↗</span></a></div>
       </section>
 
       <section class="details" id="install" aria-labelledby="install-heading">
