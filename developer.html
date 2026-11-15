@@ -118,7 +118,7 @@ print(json.dumps(result, ensure_ascii=False))</code></pre>
         </tbody></table></div>
         <h3>触发词预览</h3>
         <p>在插件清单中设置 <code>"previewOnKeyword": true</code> 后，启用的插件在用户输入完整触发词时自动运行；例如密码插件可将 <code>keyword</code> 设为 <code>pwd</code>、<code>input</code> 设为 <code>passwordLength</code>。输入 <code>pwd</code> 使用默认长度，输入 <code>pwd 32</code> 则使用本次指定的长度。用户修改触发词后，以修改后的触发词为准。</p>
-        <p>脚本返回 <code>copy</code> 或 <code>copyAndShow</code> 时，应用会在面板中显示文本；用户选中结果并按回车后，复制<strong>当前显示的同一结果</strong>并关闭面板，不会再次运行脚本。预览文本最多 200 字符且不得含控制字符，其他动作不会作为预览执行。预览时不会读取其他应用的选中文字。</p>
+        <p>脚本返回 <code>copy</code> 或 <code>copyAndShow</code> 时，应用会在面板中显示文本；用户选中结果并按回车后，复制<strong>当前显示的同一结果</strong>并关闭面板，不会再次运行脚本。预览文本最多 200 字符且不得含控制字符。支持多项预览的新版本还允许返回 <code>list</code>，如下文所述；其他动作不会作为预览执行。预览时不会读取其他应用的选中文字。</p>
         <div class="docs-note"><strong>显示与信任：</strong>触发词预览会明文显示结果，即使脚本返回 <code>copy</code> 也包括密码等敏感内容。应在插件说明和审核中明确告知用户，避免记录或上传结果，并只启用信任的代码。旧版 QuickLauncher 不支持此字段，仍需选中插件并执行；需要即时预览的用户应使用支持该能力的新版本。</div>
         <h3>被动触发规则</h3>
         <p>在插件清单中添加如下 <code>passiveTrigger</code>，可在搜索输入由允许的字符组成、且每组必需字符至少出现一个时触发。例如，规则可匹配 <code>1+1</code>；<code>123</code> 缺少运算符、<code>1+1a</code> 包含不允许的字符，均不会触发。</p>
@@ -145,11 +145,12 @@ print(json.dumps(result, ensure_ascii=False))</code></pre>
         <div class="docs-table-wrap"><table><thead><tr><th>返回 action</th><th>行为与限制</th><th>示例</th></tr></thead><tbody>
           <tr><td><code>copy</code></td><td>普通执行时复制 <code>text</code> 且不显示；启用触发词预览时会明文显示结果，回车后复制并关闭。</td><td><code>{"version":1,"action":"copy","text":"value"}</code></td></tr>
           <tr><td><code>copyAndShow</code></td><td>普通执行时复制并显示 <code>text</code>，面板保持打开；触发词预览时先显示，回车后复制并关闭。显示敏感结果需明确告知用户。</td><td><code>{"version":1,"action":"copyAndShow","text":"9"}</code></td></tr>
+          <tr><td><code>list</code></td><td>仅用于已声明 <code>previewOnKeyword</code> 的触发词预览，提供多项可复制结果；用户选择后按回车复制对应项并关闭面板。</td><td><code>{"version":1,"action":"list","items":[{"title":"2026-11-15","subtitle":"ISO 日期","text":"2026-11-15"}]}</code></td></tr>
           <tr><td><code>message</code></td><td>显示短暂提示。</td><td><code>{"version":1,"action":"message","text":"完成"}</code></td></tr>
           <tr><td><code>error</code></td><td>显示错误并保持面板。</td><td><code>{"version":1,"action":"error","text":"输入无效"}</code></td></tr>
           <tr><td><code>scheduleReminder</code></td><td>由应用安排一次系统通知；<code>seconds</code> 为 1–2,592,000 的整数（最长 30 天）。</td><td><code>{"version":1,"action":"scheduleReminder","text":"喝水","seconds":600}</code></td></tr>
         </tbody></table></div>
-        <p>所有响应的 <code>text</code> 均不能为空；<code>copyAndShow</code>、<code>error</code> 和提醒文本最多 200 字符且不能含控制字符，提醒文本不能仅为空白。触发词预览中的 <code>copy</code> 文本同样最多 200 字符且不能含控制字符。脚本执行超时为 5 秒，标准输出上限 65,536 字节；超限或 JSON 无效将被拒绝。</p>
+        <p>除 <code>list</code> 外，响应的 <code>text</code> 均不能为空；<code>copyAndShow</code>、<code>error</code> 和提醒文本最多 200 字符且不能含控制字符，提醒文本不能仅为空白。触发词预览中的 <code>copy</code> 文本同样最多 200 字符且不能含控制字符。<code>list</code> 的 <code>items</code> 必须包含 1–10 项；每项的 <code>title</code>、<code>subtitle</code> 和 <code>text</code> 均为必填字符串，不能仅为空白、不能含控制字符或 Unicode 换行符（包括 U+2028、U+2029），且各不超过 200 字符。用户上下选择后按回车，应用复制对应项的 <code>text</code> 并关闭面板，不会重新运行脚本；普通执行或被动触发返回 <code>list</code> 不会复制或执行副作用。多项预览需要包含该能力的新版本 QuickLauncher，官网发行版 1.4 及更早版本不支持。脚本执行超时为 5 秒，标准输出上限 65,536 字节；超限或 JSON 无效将被拒绝。</p>
       </section>
 
       <section class="docs-section" id="capabilities" aria-labelledby="capabilities-title">
@@ -159,7 +160,7 @@ print(json.dumps(result, ensure_ascii=False))</code></pre>
           <article><h3>被动匹配</h3><p>声明 <code>passiveTrigger</code> 后，启用插件和被动触发时，匹配输入会自动运行脚本并接收输入；使用 <code>copyAndShow</code> 返回预览，用户确认后复制。用户可独立关闭被动触发，保留触发词执行。</p></article>
           <article><h3>触发词预览</h3><p>声明 <code>previewOnKeyword</code> 后，输入触发词即运行并显示结果；回车复制当前显示的内容并关闭面板。该能力需要新版 QuickLauncher，显示敏感内容前应告知用户。</p></article>
           <article><h3>读取选中文字</h3><p>额外声明 <code>acceptsSelectedText: true</code>。只有用户无参数执行插件时才读取唤起前应用的选区，作为 <code>arguments</code> 传入。需用户授予辅助功能权限，目标应用也须提供选区；失败时用户可直接输入。不会模拟复制按键或读取剪贴板。</p></article>
-          <article><h3>显示或复制结果</h3><p>返回 <code>copy</code>、<code>copyAndShow</code>、<code>message</code> 或 <code>error</code>；由应用处理界面和剪贴板。剪贴板内容可能被有权限的其他应用读取。</p></article>
+          <article><h3>显示或复制结果</h3><p>返回 <code>copy</code>、<code>copyAndShow</code>、<code>message</code> 或 <code>error</code>；新版还支持触发词预览中的多项 <code>list</code>。由应用处理界面和剪贴板，剪贴板内容可能被有权限的其他应用读取。</p></article>
           <article><h3>定时提醒</h3><p>返回 <code>scheduleReminder</code>，应用向系统申请一次性通知；首次使用时可能请求通知授权。显示受系统通知设置和专注模式影响，脚本无需后台等待。</p></article>
         </div>
         <div class="docs-note"><strong>权限与信任：</strong>脚本以当前用户身份运行，不受 QuickLauncher 沙箱限制，可自行访问文件、网络或其他应用；AppleScript 控制其他应用可能需要系统自动化权限。请在说明中明确数据用途，不上传敏感数据，不把凭证写入插件包。选区读取需由用户自行授权，标记为安全输入的控件不会读取。应用未提供任意插件访问书签、查询历史或密码的宿主 API。</div>
