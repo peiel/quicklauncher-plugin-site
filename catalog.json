@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": 1794745016,
+  "generatedAt": 1794745157,
   "entries": [
     {
       "repositoryID": 1458697776,
@@ -40,6 +40,19 @@
       "sha256": "f4772b78ca3156b1fde325f1ba59f79cda83ae7e5afbc6e939ecb94764b2821e",
       "assetSize": 7883,
       "assetURL": "https://github.com/peiel/quicklauncher-reminder-plugin/releases/download/v1.0.2/quicklauncher-reminder-1.0.2-verification.quicklauncher.json"
+    },
+    {
+      "repositoryID": 1458768730,
+      "fullName": "peiel/quicklauncher-timestamp-plugin",
+      "description": "QuickLauncher 时间戳转换示例插件",
+      "repositoryURL": "https://github.com/peiel/quicklauncher-timestamp-plugin",
+      "releaseID": 446039240,
+      "assetID": 750904776,
+      "tag": "v1.0.0",
+      "commit": "a5177837ea7078a27b63e39554c8afd8a9b2182e",
+      "sha256": "7c6f2679b32520992f6ca34623aabd41579622e2eb48430fbc469066236a45c5",
+      "assetSize": 9300,
+      "assetURL": "https://github.com/peiel/quicklauncher-timestamp-plugin/releases/download/v1.0.0/timestamp-v1.0.0.quicklauncher.json"
     }
   ]
 }
