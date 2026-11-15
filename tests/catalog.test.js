@@ -56,6 +56,8 @@ search('timestamp', ['timestamp-plugin']);
 search('时间戳', ['timestamp-plugin']);
 search('date', ['date-plugin']);
 search('time', ['timestamp-plugin', 'time-plugin']);
+search('日期时间', ['time-plugin']);
+search('年月日时分秒', ['time-plugin']);
 search('textstats', ['text-stats-plugin']);
 search('urlcodec', ['url-codec-plugin']);
 search('32', ['password-plugin']);
