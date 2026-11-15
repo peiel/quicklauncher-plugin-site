@@ -8,7 +8,7 @@ const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const installation = fs.readFileSync(path.join(root, 'install.html'), 'utf8');
 const cards = [...html.matchAll(/<article class="plugin-card" id="([^"]+)" data-search="([^"]+)" data-repository="([^"]+)">/g)]
   .map((match) => ({ id: match[1], dataset: { search: match[2], repository: match[3] }, hidden: false, querySelector: () => ({}) }));
-assert.deepEqual(cards.map((card) => card.id), ['password-plugin', 'calculator-plugin', 'reminder-plugin', 'timestamp-plugin', 'text-stats-plugin']);
+assert.deepEqual(cards.map((card) => card.id), ['password-plugin', 'calculator-plugin', 'reminder-plugin', 'timestamp-plugin', 'text-stats-plugin', 'url-codec-plugin']);
 
 const elements = Object.fromEntries(['plugin-search', 'empty-state', 'result-count', 'search-status', 'plugin-count']
   .map((id) => [id, { value: '', textContent: '', hidden: false }]));
@@ -21,7 +21,7 @@ const document = {
   querySelectorAll: (selector) => selector === '.plugin-card' ? cards : []
 };
 vm.runInNewContext(fs.readFileSync(path.join(root, 'app.js'), 'utf8'), { document, fetch: () => Promise.reject(new Error('offline')) });
-assert.equal(elements['plugin-count'].textContent, '5');
+assert.equal(elements['plugin-count'].textContent, '6');
 assert.ok(!html.includes('id="sidebar-count"'));
 assert.match(html, /插件目录<\/a>\s*<a href="install\.html">安装指南<\/a>\s*<a href="developer\.html">开发者<\/a>/);
 assert.match(installation, /插件目录<\/a>\s*<a class="nav-current" href="install\.html" aria-current="page">安装指南<\/a>\s*<a href="developer\.html">开发者<\/a>/);
@@ -48,10 +48,11 @@ search('password', ['password-plugin']);
 search('timestamp', ['timestamp-plugin']);
 search('时间戳', ['timestamp-plugin']);
 search('textstats', ['text-stats-plugin']);
+search('urlcodec', ['url-codec-plugin']);
 search('不存在', []);
 search('', cards.map((card) => card.id));
 
-for (const repo of ['quicklauncher-password-plugin', 'quicklauncher-calculator-plugin', 'quicklauncher-reminder-plugin', 'quicklauncher-timestamp-plugin', 'quicklauncher-text-stats-plugin']) {
+for (const repo of ['quicklauncher-password-plugin', 'quicklauncher-calculator-plugin', 'quicklauncher-reminder-plugin', 'quicklauncher-timestamp-plugin', 'quicklauncher-text-stats-plugin', 'quicklauncher-url-codec-plugin']) {
   const deepLink = `quicklauncher://install?repo=peiel%2F${repo}`;
   const github = `https://github.com/peiel/${repo}`;
   assert.ok(html.includes(`href="${deepLink}"`), deepLink);

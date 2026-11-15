@@ -6,7 +6,7 @@
 
 指南提供可复制的 AI 开发提示词和 `skills/quicklauncher-plugin/SKILL.md` 下载；修改插件协议或发布流程时应一并检查 Skill 与指南的内容是否仍然一致。`developer.js` 仅处理提示词复制，剪贴板不可用时提示手动复制。
 
-网站展示密码生成、计算器、定时提醒、时间戳转换和文本统计插件的源码与安装说明。点击「在 QuickLauncher 中打开」会通过 `quicklauncher://install?repo=owner%2Frepo` 链接将仓库交给已安装的 QuickLauncher；应用从 GitHub 获取插件，展示审核内容，用户确认后才安装。部分插件需要支持新版插件协议的 QuickLauncher。若无法打开应用，可在设置的「发现插件」中手动输入仓库名。网站不镜像插件资产。
+网站展示密码生成、计算器、定时提醒、时间戳转换、文本统计和 URL 参数编解码插件的源码与安装说明。点击「在 QuickLauncher 中打开」会通过 `quicklauncher://install?repo=owner%2Frepo` 链接将仓库交给已安装的 QuickLauncher；应用从 GitHub 获取插件，展示审核内容，用户确认后才安装。部分插件需要支持新版插件协议的 QuickLauncher。若无法打开应用，可在设置的「发现插件」中手动输入仓库名。网站不镜像插件资产。
 
 QuickLauncher 应用使用 `catalog.json` 发现已收录插件。`catalog-repositories.json` 是仓库白名单；GitHub Actions 每四小时使用仓库自动化凭据从 GitHub 同步 Release、标签对应提交、资产地址和 SHA-256，推送目录后由 Pages 部署。也可在 Actions 手动运行 Update plugin catalog。同步失败不会发布部分结果；目录超过 48 小时时，应用会暂停使用它进行安装和更新。目录提供的是同步快照，不证明作者身份或资产由标签提交构建。插件包仍由应用直接从 GitHub 获取。
 
