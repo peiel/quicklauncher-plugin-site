@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": 1794747954,
+  "generatedAt": 1794748098,
   "entries": [
     {
       "repositoryID": 1458697776,
@@ -20,13 +20,13 @@
       "fullName": "peiel/quicklauncher-calculator-plugin",
       "description": "QuickLauncher 公式计算器插件",
       "repositoryURL": "https://github.com/peiel/quicklauncher-calculator-plugin",
-      "releaseID": 446024262,
-      "assetID": 750854856,
-      "tag": "v1.0.0",
-      "commit": "ec2df40b5165fd5eee91f3fc7ee26f9aabfe7eee",
-      "sha256": "bbcb27643caf2bf225243dcca4ce8e7923a58bd7749b5b0742fdd400fbba8198",
-      "assetSize": 13329,
-      "assetURL": "https://github.com/peiel/quicklauncher-calculator-plugin/releases/download/v1.0.0/quicklauncher-calculator-1.0.0.quicklauncher.json"
+      "releaseID": 446068391,
+      "assetID": 751039070,
+      "tag": "v1.1.0",
+      "commit": "71d428b43478ba26305fe2dccb215abfbfd9d288",
+      "sha256": "081c99727c01f2e9b453ff3a8a03557336dfc8ef26f07c82b50b32f4bf5787e9",
+      "assetSize": 14585,
+      "assetURL": "https://github.com/peiel/quicklauncher-calculator-plugin/releases/download/v1.1.0/quicklauncher-calculator-1.1.0.quicklauncher.json"
     },
     {
       "repositoryID": 1458752360,
