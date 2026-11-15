@@ -6,8 +6,8 @@ const path = require('node:path');
 const root = path.join(__dirname, '..');
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const installation = fs.readFileSync(path.join(root, 'install.html'), 'utf8');
-const cards = [...html.matchAll(/<article class="plugin-card" id="([^"]+)" data-search="([^"]+)">/g)]
-  .map((match) => ({ id: match[1], dataset: { search: match[2] }, hidden: false }));
+const cards = [...html.matchAll(/<article class="plugin-card" id="([^"]+)" data-search="([^"]+)" data-repository="([^"]+)">/g)]
+  .map((match) => ({ id: match[1], dataset: { search: match[2], repository: match[3] }, hidden: false, querySelector: () => ({}) }));
 assert.deepEqual(cards.map((card) => card.id), ['password-plugin', 'calculator-plugin', 'reminder-plugin', 'timestamp-plugin']);
 
 const elements = Object.fromEntries(['plugin-search', 'empty-state', 'result-count', 'search-status', 'plugin-count']
@@ -20,7 +20,7 @@ const document = {
   querySelector: (selector) => elements[selector.slice(1)],
   querySelectorAll: (selector) => selector === '.plugin-card' ? cards : []
 };
-vm.runInNewContext(fs.readFileSync(path.join(root, 'app.js'), 'utf8'), { document });
+vm.runInNewContext(fs.readFileSync(path.join(root, 'app.js'), 'utf8'), { document, fetch: () => Promise.reject(new Error('offline')) });
 assert.equal(elements['plugin-count'].textContent, '4');
 assert.ok(!html.includes('id="sidebar-count"'));
 assert.match(html, /插件目录<\/a>\s*<a href="install\.html">安装指南<\/a>\s*<a href="developer\.html">开发者<\/a>/);

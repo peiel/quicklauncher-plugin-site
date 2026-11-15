@@ -155,8 +155,8 @@ python3 "$WORK_DIR/package_github_plugin.py" "$WORK_DIR/source" "$WORK_DIR/my-pl
 
       <section class="docs-section" id="catalog" aria-labelledby="catalog-title">
         <p class="section-label">07 / CATALOG</p><h2 id="catalog-title">申请目录收录</h2>
-        <p>GitHub 仓库可先通过 <code>owner/repo</code> 安装；添加 topic 不会自动出现在展示站。若希望进入应用的插件目录和网站列表，请向<a href="https://github.com/peiel/quicklauncher-plugin-site">插件目录网站仓库</a>提交 Pull Request：将公开仓库名加入 <code>catalog-repositories.json</code>，并在 <code>index.html</code> 补充插件卡片、用途、版本及安装与源码链接。</p>
-        <p>维护者审核后，GitHub Actions 定期同步白名单中的最新正式 Release、标签提交和资产摘要到 <code>catalog.json</code>；网站卡片内容和版本目前需要维护。收录的标签须以英文字母或数字开头，后续仅使用字母、数字、点、下划线或连字符（总长最多 200）；附件名也须以字母或数字开头、仅含上述字符，并以 <code>.quicklauncher.json</code> 结尾。</p>
+        <p>GitHub 仓库可先通过 <code>owner/repo</code> 安装；添加 topic 不会自动出现在展示站。若希望进入应用的插件目录和网站列表，请向<a href="https://github.com/peiel/quicklauncher-plugin-site">插件目录网站仓库</a>提交 Pull Request：将公开仓库名加入 <code>catalog-repositories.json</code>，并在 <code>index.html</code> 补充插件卡片、用途、安装与源码链接，以及指向仓库名的 <code>data-repository</code> 属性。</p>
+        <p>维护者审核后，GitHub Actions 定期同步白名单中的最新正式 Release、标签提交和资产摘要到 <code>catalog.json</code>；网站卡片会从目录读取版本，卡片名称和介绍仍需维护。收录的标签须以英文字母或数字开头，后续仅使用字母、数字、点、下划线或连字符（总长最多 200）；附件名也须以字母或数字开头、仅含上述字符，并以 <code>.quicklauncher.json</code> 结尾。</p>
         <p>目录快照可能延迟；超过 48 小时后，应用会暂停使用该目录安装或更新。目录不可用时，按仓库名查找也可能暂时不可用；请稍后重试。插件资产仍从 GitHub 下载。</p>
       </section>
       <footer><span>QuickLauncher 插件目录</span><a href="./">返回插件目录 ↗</a></footer>
