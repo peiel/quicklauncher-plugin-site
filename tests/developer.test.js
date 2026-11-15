@@ -27,6 +27,9 @@ function example(name) {
 const manifestText = example('manifest');
 const manifest = JSON.parse(manifestText);
 const passiveTrigger = JSON.parse(example('passive-trigger'));
+assert.match(page, /previewOnKeyword/);
+assert.match(page, /明文显示/);
+assert.match(page, /当前显示的同一结果/);
 assert.equal(passiveTrigger.type, 'characterSet');
 assert.deepEqual(passiveTrigger.requiredCharacterGroups, ['0123456789', '+-*/×÷']);
 assert.equal(manifest.input, 'arguments');
@@ -64,6 +67,13 @@ try {
     return spawnSync('python3', [path.join(root, 'tools/package_github_plugin.py'), plugin, output], {encoding: 'utf8'});
   };
   assert.equal(packWith({passiveTrigger}).status, 0);
+  for (const valid of [true, false, null]) {
+    assert.equal(packWith({previewOnKeyword: valid}).status, 0, `合法的预览设置 ${valid}`);
+  }
+  for (const invalid of ['true', 1, {}, []]) {
+    assert.notEqual(packWith({previewOnKeyword: invalid}).status, 0, `非法的预览设置 ${JSON.stringify(invalid)}`);
+    assert.equal(fs.existsSync(output), false);
+  }
   const invalidTriggers = [
     'characterSet', {}, {...passiveTrigger, type: 'regex'},
     {...passiveTrigger, allowedCharacters: ''},

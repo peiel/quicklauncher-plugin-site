@@ -119,9 +119,11 @@ def validate_manifest(entries: list[dict]) -> None:
             raise ValueError
         input_type = manifest.get("input")
         selected_text = manifest.get("acceptsSelectedText")
+        preview_on_keyword = manifest.get("previewOnKeyword")
         if (input_type not in (None, "passwordLength", "arguments")
                 or (selected_text is not None and not isinstance(selected_text, bool))
-                or (selected_text is True and input_type != "arguments")):
+                or (selected_text is True and input_type != "arguments")
+                or (preview_on_keyword is not None and not isinstance(preview_on_keyword, bool))):
             raise ValueError
         passive_trigger = manifest.get("passiveTrigger")
         if passive_trigger is not None:
