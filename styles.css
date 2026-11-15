@@ -32,3 +32,24 @@ footer{border-top:1px solid #e8eee8;display:flex;justify-content:space-between;g
 @media(max-width:560px){.install-lead{align-items:flex-start;flex-direction:column;padding:22px;gap:18px}.install-guide-grid{gap:14px;margin-top:16px}.install-panel-heading{padding:21px 20px 18px}.install-steps li{grid-template-columns:32px minmax(0,1fr);gap:12px;padding:19px 20px}.install-number{width:32px;height:32px}.install-sidebar{grid-template-columns:minmax(0,1fr)}.install-note,.install-help{padding:20px}}
 @media(max-width:480px){.topbar{height:auto}.topbar-inner{height:auto;min-height:60px;flex-wrap:wrap;gap:10px;padding:12px 5%}.topbar nav{width:100%;flex-wrap:wrap;gap:10px 16px}}
 @media(max-width:360px){.brand-product,.brand-divider{display:none}.intro{align-items:start;flex-direction:column}.open-source{margin-top:0}}
+
+/* The catalog uses the full card width for descriptions and touch actions on phones. */
+@media(max-width:660px){
+  .catalog-layout .catalog-top{gap:16px}
+  .catalog-layout .catalog-top h2{font-size:16px}
+  .catalog-layout .catalog-top p{font-size:13px;line-height:1.6}
+  .catalog-layout .search-wrap input{height:44px;font-size:16px}
+  .catalog-layout .search-wrap svg{top:50%;transform:translateY(-50%)}
+  .catalog-layout .plugin-card{grid-template-columns:44px minmax(0,1fr);gap:12px 14px;align-items:start}
+  .catalog-layout .plugin-icon{grid-column:1;grid-row:1}
+  .catalog-layout .plugin-main{display:contents}
+  .catalog-layout .plugin-title-row{grid-column:2;grid-row:1;min-height:44px;align-content:center;gap:4px 8px}
+  .catalog-layout .plugin-title-row h3{font-size:16px;line-height:1.4}
+  .catalog-layout .version{min-width:0;max-width:100%;font-size:11px;overflow-wrap:anywhere}
+  .catalog-layout .plugin-source{min-height:44px;padding:8px 9px;font-size:12px}
+  .catalog-layout .plugin-summary{grid-column:1/-1;margin:0;font-size:13px;line-height:1.7;overflow-wrap:anywhere}
+  .catalog-layout .plugin-meta{grid-column:1/-1;font-size:12px;line-height:1.6;overflow-wrap:anywhere}
+  .catalog-layout .plugin-actions{grid-column:1/-1;width:100%;margin-top:2px}
+  .catalog-layout .plugin-actions .plugin-action{width:100%;min-height:44px;font-size:13px}
+  .catalog-layout .catalog-foot{flex-wrap:wrap;line-height:1.6}
+}
