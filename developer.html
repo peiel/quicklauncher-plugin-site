@@ -129,6 +129,7 @@ print(json.dumps(result, ensure_ascii=False))</code></pre>
       <section class="docs-section" id="publish" aria-labelledby="publish-title">
         <p class="section-label">06 / RELEASE</p><h2 id="publish-title">发布到 GitHub</h2>
         <p>发布公开仓库与正式 Release 后，即可在应用内用 <code>owner/repo</code> 查找并审查安装。发布前确认插件文件不包含密钥或个人数据，并使用已经测试的 Git 提交打包。</p>
+        <div class="docs-note">如果已经通过本地导入安装了相同 ID，应用不会直接把该副本切换为 GitHub 来源。请先保存需要保留的自定义设置并删除本地副本，再从 GitHub 安装；也可以在隔离的测试环境中验证 GitHub 安装。</div>
         <ol class="docs-list"><li>在 GitHub 创建一个空的公开仓库，将插件提交并配置 <code>origin</code> 指向它。新建仓库可在插件目录中执行以下命令，将 <code>OWNER/REPO</code> 替换成自己的仓库名；已有 Git 仓库可跳过初始化和添加已有 remote 的步骤。</li></ol>
         <pre><code>git init -b main
 git add manifest.json main.py

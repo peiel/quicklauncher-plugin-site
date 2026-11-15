@@ -4,13 +4,13 @@
 
 `developer.html` 是公开插件开发指南，涵盖协议、宿主能力、本地安装、GitHub Release 和目录收录。`tools/package_github_plugin.py` 可公开下载，使用 `tools/LICENSE` 中的 MIT 协议；它来自 QuickLauncher 项目的 `Tools/package_github_plugin.py`，维护插件协议或打包规则时需同步更新该文件与指南，避免版本不一致。
 
-网站展示密码生成、计算器和定时提醒插件的源码与安装说明。点击「在 QuickLauncher 中打开」会通过 `quicklauncher://install?repo=owner%2Frepo` 链接将仓库交给已安装的 QuickLauncher；应用从 GitHub 获取插件，展示审核内容，用户确认后才安装。计算器和提醒插件需要支持新版插件协议的 QuickLauncher。若无法打开应用，可在设置的「发现插件」中手动输入仓库名。网站不镜像插件资产。
+网站展示密码生成、计算器、定时提醒和时间戳转换插件的源码与安装说明。点击「在 QuickLauncher 中打开」会通过 `quicklauncher://install?repo=owner%2Frepo` 链接将仓库交给已安装的 QuickLauncher；应用从 GitHub 获取插件，展示审核内容，用户确认后才安装。部分插件需要支持新版插件协议的 QuickLauncher。若无法打开应用，可在设置的「发现插件」中手动输入仓库名。网站不镜像插件资产。
 
 QuickLauncher 应用使用 `catalog.json` 发现已收录插件。`catalog-repositories.json` 是仓库白名单；GitHub Actions 每四小时使用仓库自动化凭据从 GitHub 同步 Release、标签对应提交、资产地址和 SHA-256，推送目录后由 Pages 部署。也可在 Actions 手动运行 Update plugin catalog。同步失败不会发布部分结果；目录超过 48 小时时，应用会暂停使用它进行安装和更新。目录提供的是同步快照，不证明作者身份或资产由标签提交构建。插件包仍由应用直接从 GitHub 获取。
 
 网站卡片中的显示版本写在 `index.html` 中；发布新版本后也需更新对应显示版本。请勿向网站或目录写入 Token、私钥或个人数据。
 
-运行 `node tests/catalog.test.js` 可验证目录搜索、显示数量、空结果状态和三个插件的跳转链接；此检查不模拟浏览器界面。
+运行 `node tests/catalog.test.js` 可验证目录搜索、显示数量、空结果状态和四个插件的跳转链接；此检查不模拟浏览器界面。
 运行 `node tests/developer.test.js` 可执行文档中的 Python 示例、测试选区输入和错误输出，并用公开打包工具打包示例；需要 Python 3.9+，不操作浏览器或应用界面。
 
 发布前应核对版本与源码/Release 链接。推荐将站点源码托管于独立 Git 仓库，并在 Cloudflare Pages 中使用 Git 集成发布：选择静态站点、构建命令 `exit 0`，输出目录指向包含 `index.html` 的仓库根目录。也可使用其他静态托管。不要把凭证或私钥放到此目录。
