@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "generatedAt": 1794744249,
+  "entries": [
+    {
+      "repositoryID": 1458697776,
+      "fullName": "peiel/quicklauncher-password-plugin",
+      "description": "QuickLauncher 随机强密码插件",
+      "repositoryURL": "https://github.com/peiel/quicklauncher-password-plugin",
+      "releaseID": 445986070,
+      "assetID": 750681049,
+      "tag": "v1.1.0",
+      "commit": "fcd4bab68f161ab15a1c015f685b2654171d0851",
+      "sha256": "86661fca4cd770a9aeed600bf8c5e082c8ff9c9b8a1bb1169b1ea6aa9dc7665f",
+      "assetSize": 4576,
+      "assetURL": "https://github.com/peiel/quicklauncher-password-plugin/releases/download/v1.1.0/v1.1.0.quicklauncher.json"
+    },
+    {
+      "repositoryID": 1458753220,
+      "fullName": "peiel/quicklauncher-calculator-plugin",
+      "description": "QuickLauncher 公式计算器插件",
+      "repositoryURL": "https://github.com/peiel/quicklauncher-calculator-plugin",
+      "releaseID": 446024262,
+      "assetID": 750854856,
+      "tag": "v1.0.0",
+      "commit": "ec2df40b5165fd5eee91f3fc7ee26f9aabfe7eee",
+      "sha256": "bbcb27643caf2bf225243dcca4ce8e7923a58bd7749b5b0742fdd400fbba8198",
+      "assetSize": 13329,
+      "assetURL": "https://github.com/peiel/quicklauncher-calculator-plugin/releases/download/v1.0.0/quicklauncher-calculator-1.0.0.quicklauncher.json"
+    },
+    {
+      "repositoryID": 1458752360,
+      "fullName": "peiel/quicklauncher-reminder-plugin",
+      "description": "QuickLauncher 定时提醒插件",
+      "repositoryURL": "https://github.com/peiel/quicklauncher-reminder-plugin",
+      "releaseID": 446024149,
+      "assetID": 750854275,
+      "tag": "v1.0.1",
+      "commit": "a142dcd2c5ecafa4875a8fd89824fd72c1fb7ef8",
+      "sha256": "cb75bdf91cf66776096944cad3b442e1d0847fd8402f335a629f8239825508ae",
+      "assetSize": 7847,
+      "assetURL": "https://github.com/peiel/quicklauncher-reminder-plugin/releases/download/v1.0.1/quicklauncher-reminder-1.0.1.quicklauncher.json"
+    }
+  ]
+}

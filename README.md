@@ -4,7 +4,9 @@
 
 网站展示密码生成、计算器和定时提醒插件的源码与安装说明。点击「在 QuickLauncher 中打开」会通过 `quicklauncher://install?repo=owner%2Frepo` 链接将仓库交给已安装的 QuickLauncher；应用从 GitHub 获取插件，展示审核内容，用户确认后才安装。计算器和提醒插件需要支持新版插件协议的 QuickLauncher。若无法打开应用，可在设置的「发现插件」中手动输入仓库名。网站不镜像插件资产。
 
-插件版本和 Release 链接目前写在 `index.html` 中；新版本发布后需要同步修改网站并重新部署。
+QuickLauncher 应用使用 `catalog.json` 发现已收录插件。`catalog-repositories.json` 是仓库白名单；GitHub Actions 每四小时使用仓库自动化凭据从 GitHub 同步 Release、标签对应提交、资产地址和 SHA-256，推送目录后由 Pages 部署。也可在 Actions 手动运行 Update plugin catalog。同步失败不会发布部分结果；目录超过 48 小时时，应用会暂停使用它进行安装和更新。目录提供的是同步快照，不证明作者身份或资产由标签提交构建。插件包仍由应用直接从 GitHub 获取。
+
+网站卡片中的显示版本写在 `index.html` 中；发布新版本后也需更新对应显示版本。请勿向网站或目录写入 Token、私钥或个人数据。
 
 运行 `node tests/catalog.test.js` 可验证目录搜索、显示数量、空结果状态和三个插件的跳转链接；此检查不模拟浏览器界面。
 
