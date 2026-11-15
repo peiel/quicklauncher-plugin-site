@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": 1794747341,
+  "generatedAt": 1794747954,
   "entries": [
     {
       "repositoryID": 1458697776,
@@ -66,6 +66,19 @@
       "sha256": "de669a245244532dea10e2359d10f60539b9fc21a6ea69a05f6a995cdef99384",
       "assetSize": 7881,
       "assetURL": "https://github.com/peiel/quicklauncher-text-stats-plugin/releases/download/v1.0.0/text-stats.quicklauncher.json"
+    },
+    {
+      "repositoryID": 1458807468,
+      "fullName": "peiel/quicklauncher-url-codec-plugin",
+      "description": "QuickLauncher URL 参数编解码插件",
+      "repositoryURL": "https://github.com/peiel/quicklauncher-url-codec-plugin",
+      "releaseID": 446066276,
+      "assetID": 751028912,
+      "tag": "v1.0.0",
+      "commit": "9a6ea140b0526b969209ce32ab3fa6a96d2491e0",
+      "sha256": "eb86b02a2eabc1a4f271fdd1c37087694151c5ecbe7031c99e96e379831a8190",
+      "assetSize": 8976,
+      "assetURL": "https://github.com/peiel/quicklauncher-url-codec-plugin/releases/download/v1.0.0/url-codec.quicklauncher.json"
     }
   ]
 }
