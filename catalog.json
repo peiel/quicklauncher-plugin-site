@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": 1794756738,
+  "generatedAt": 1794757565,
   "entries": [
     {
       "repositoryID": 1458697776,
@@ -72,13 +72,13 @@
       "fullName": "peiel/quicklauncher-time-plugin",
       "description": "QuickLauncher 时间格式插件：预览并复制多种时间格式",
       "repositoryURL": "https://github.com/peiel/quicklauncher-time-plugin",
-      "releaseID": 446152757,
-      "assetID": 751404411,
-      "tag": "v1.0.0",
-      "commit": "992ae2c1a2e6752d772636a2da654949ef51c1f8",
-      "sha256": "54d4b3bcd8567a2f93bfb63268ffe8a0c1a6e0531feb4e363114f6a55fff6f54",
-      "assetSize": 8399,
-      "assetURL": "https://github.com/peiel/quicklauncher-time-plugin/releases/download/v1.0.0/time-formats.quicklauncher.json"
+      "releaseID": 446167548,
+      "assetID": 751472046,
+      "tag": "v1.1.0",
+      "commit": "a3c57200937dfa59d978c2af71eddc8932b3205a",
+      "sha256": "5870e4a8aeab1274a76f4d550b88f675b57dd41fbd9db1aed0c61c2c8eda8689",
+      "assetSize": 10159,
+      "assetURL": "https://github.com/peiel/quicklauncher-time-plugin/releases/download/v1.1.0/quicklauncher-time-plugin-v1.1.0.quicklauncher.json"
     },
     {
       "repositoryID": 1458794884,
