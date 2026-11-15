@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "generatedAt": 1794745157,
+  "generatedAt": 1794745881,
   "entries": [
     {
       "repositoryID": 1458697776,
       "fullName": "peiel/quicklauncher-password-plugin",
       "description": "QuickLauncher 随机强密码插件",
       "repositoryURL": "https://github.com/peiel/quicklauncher-password-plugin",
-      "releaseID": 445986070,
-      "assetID": 750681049,
-      "tag": "v1.1.0",
-      "commit": "fcd4bab68f161ab15a1c015f685b2654171d0851",
-      "sha256": "86661fca4cd770a9aeed600bf8c5e082c8ff9c9b8a1bb1169b1ea6aa9dc7665f",
-      "assetSize": 4576,
-      "assetURL": "https://github.com/peiel/quicklauncher-password-plugin/releases/download/v1.1.0/v1.1.0.quicklauncher.json"
+      "releaseID": 446046082,
+      "assetID": 750936599,
+      "tag": "v1.1.1",
+      "commit": "4efcf449fc1d6acec7bbfa69799c69d1ea803c7b",
+      "sha256": "51b8e970e2b6b828694db54b3685f57a6ef8daaab980f4c68ad97032abd93f23",
+      "assetSize": 4524,
+      "assetURL": "https://github.com/peiel/quicklauncher-password-plugin/releases/download/v1.1.1/password-v1.1.1.quicklauncher.json"
     },
     {
       "repositoryID": 1458753220,
