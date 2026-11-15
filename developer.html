@@ -36,12 +36,13 @@
       <a class="sidebar-link" href="#install">安装与测试</a>
       <a class="sidebar-link" href="#publish">发布到 GitHub</a>
       <a class="sidebar-link" href="#catalog">申请目录收录</a>
+      <a class="sidebar-link" href="#verification">完整验证与排错</a>
     </aside>
     <div class="content docs-content">
       <div class="eyebrow"><span class="eyebrow-dot"></span> QUICKLAUNCHER / DEVELOPERS</div>
       <div class="intro docs-intro"><div><h1>开发者指南</h1><p>用熟悉的语言，给 QuickLauncher 添加一个小功能。</p></div><div class="open-source"><span class="open-dot"></span>脚本协议 v1</div></div>
       <div class="docs-lead"><strong>从一个目录开始</strong><p>编写清单和脚本 → 本地导入测试 → 发布 GitHub Release → 申请展示站收录。文本参数、选中文字、复制结果和定时提醒由应用提供。</p></div>
-      <nav class="docs-mobile-nav" aria-label="开发指南目录"><a href="#ai-skill">AI 辅助开发</a><a href="#quickstart">快速开始</a><a href="#capabilities">能力与权限</a><a href="#publish">发布插件</a><a href="#catalog">目录收录</a></nav>
+      <nav class="docs-mobile-nav" aria-label="开发指南目录"><a href="#ai-skill">AI 辅助开发</a><a href="#quickstart">快速开始</a><a href="#capabilities">能力与权限</a><a href="#publish">发布插件</a><a href="#catalog">目录收录</a><a href="#verification">验证与排错</a></nav>
 
       <section class="docs-section" id="ai-skill" aria-labelledby="ai-skill-title">
         <p class="section-label">AI / SKILL</p><h2 id="ai-skill-title">用 AI 开发插件</h2>
@@ -56,7 +57,7 @@ https://plugin.quicklauncher.flyee.tech/skills/quicklauncher-plugin/SKILL.md
 输入和输出：[说明输入、结果及是否需要选中文字]
 首选语言：[Python、Ruby、AppleScript、Shell 或其他]
 
-请完成插件代码和必要的测试，说明如何本地安装；如果我要求发布或收录，请按指南完成相应准备和操作。</code></pre>
+请完成插件代码和必要的测试，按指南的完整验证步骤说明结果，并区分模拟验证和真实应用验证；如果我要求发布或收录，请按指南完成相应准备和操作。</code></pre>
         <div class="ai-prompt-actions"><button class="ai-copy-button" id="copy-ai-prompt" type="button" disabled>复制提示词</button><span id="copy-ai-status" role="status" aria-live="polite"></span></div>
         <p>复制后替换方括号中的内容。也可以手动选中上方文字复制。</p>
         <h3>作为 Skill 使用</h3>
@@ -206,6 +207,38 @@ python3 "$WORK_DIR/package_github_plugin.py" "$WORK_DIR/source" "$WORK_DIR/my-pl
         <p>维护者会审核 PR 和插件内容；当前仓库没有专门针对插件 PR 的自动安全审查，提交不代表自动收录。合并后网站随主分支更新，GitHub Actions 约每四小时同步白名单中的最新正式 Release、标签提交和资产摘要，也可由维护者手动触发。同步或部署可能延迟或失败；目录更新前，新卡片的版本可能显示“版本暂不可用”。网站卡片从目录读取版本，名称和介绍仍需维护。</p>
         <p>收录的标签须以英文字母或数字开头，后续仅使用字母、数字、点、下划线或连字符（总长最多 200）；附件名也须以字母或数字开头、仅含上述字符，并以 <code>.quicklauncher.json</code> 结尾。目录快照超过 48 小时后，应用会暂停使用该目录安装或更新；目录不可用时，按仓库名查找也可能暂时不可用。</p>
         <p>用户通过网站进入 QuickLauncher 后仍须审查并确认安装，安装后插件默认停用；审核和摘要匹配不代表作者身份或代码安全已获验证。</p>
+      </section>
+      <section class="docs-section" id="verification" aria-labelledby="verification-title">
+        <p class="section-label">08 / VERIFICATION</p><h2 id="verification-title">完整验证与常见问题</h2>
+        <p>以下步骤参考<a href="https://github.com/peiel/quicklauncher-text-stats-plugin">文本统计插件</a>从开发到收录的过程。按实际需求选择测试；记录已完成的结果，并区分脚本测试、隔离环境测试和真实应用操作。</p>
+        <h3>1. 脚本与本地安装</h3>
+        <ol class="docs-list">
+          <li>检查清单、入口、运行时和依赖；用标准输入发送协议 JSON，验证正常结果、空输入、无效协议版本和适用的边界。文本插件应考虑中文、组合字符、换行和 1024 UTF-8 字节限制；不要把字节数与字符数混为一谈。</li>
+          <li>在测试用 QuickLauncher 环境导入插件，审查后启用，验证触发词、直接输入、结果显示和复制。若声明选区能力，还须在其他应用选中文字，再唤起 QuickLauncher，只输入触发词并执行；按需在“设置 → 权限”自行授予辅助功能权限。模拟向脚本传入文本不能证明系统选区读取成功。</li>
+          <li>检查无选区、权限未授予或目标应用不提供选区时的提示。涉及通知等能力时，还需在真实应用中检查对应权限和系统行为；未实际操作的项目应标明未验证。</li>
+        </ol>
+        <p>例如文本统计插件可输入 <code>textstats hello world</code>，也可先在其他应用选中 <code>hello world</code> 再执行 <code>textstats</code>；两种方式均应显示字符 11、不含空白 10、词组 2、行 1、UTF-8 字节 11。</p>
+        <h3>2. GitHub 发布与安装审核</h3>
+        <ol class="docs-list">
+          <li>从已测试的 Git 标签导出并打包，检查打包工具列出的文件，不包含凭证或私人数据。确认清单版本、标签和正式 Release 相对应，且 Release 只有一个 <code>.quicklauncher.json</code> 附件。</li>
+          <li>比较本地包的 SHA-256 与 GitHub Release 附件的 <code>digest</code>。例如完成<a href="#publish">上面的打包步骤</a>后，将下面的仓库名和标签替换成自己的值：</li>
+        </ol>
+        <pre><code>shasum -a 256 "$WORK_DIR/my-plugin.quicklauncher.json"
+gh api repos/OWNER/REPO/releases/tags/v1.0.0 --jq '.assets[] | {name, digest}'</code></pre>
+        <p>核对附件名称及摘要；若 GitHub 未提供摘要，可将附件下载到新的临时目录后再计算比较。摘要一致只能证明下载内容匹配，不能证明作者身份或附件由标签构建。</p>
+        <ol class="docs-list" start="3">
+          <li>在隔离环境或经用户同意的测试环境通过仓库名查找，检查预览中的仓库、标签、提交、摘要及文件。取消审核应不安装；确认后应从 GitHub 安装且默认停用。启用后验证实际执行。</li>
+          <li>已安装相同 ID 的本地副本不会自动变成 GitHub 来源；先保存需要的配置，再按<a href="#publish">发布说明</a>处理，或使用隔离环境。已是相同 GitHub 版本且文件未变时，应用可能提示“已是最新版本”，不会重新显示安装预览。不要为测试擅自删除用户现有插件或设置。</li>
+        </ol>
+        <h3>3. 目录收录与网站一键安装</h3>
+        <ol class="docs-list">
+          <li>按<a href="#catalog">收录流程</a>提交 PR，说明仓库、Release、权限和测试结果。官网维护者可使用独立分支提交；第三方一般 Fork 官网仓库。PR 提交或预览部署成功不代表已收录。</li>
+          <li>PR 合并后，等待网站部署及目录同步。核对网站能搜索到卡片，<code>data-repository</code> 与白名单一致，版本来自目录；在 <a href="catalog.json">catalog.json</a> 中检查对应仓库、标签、提交和附件摘要。维护者可手动运行 Update plugin catalog；同步失败时查看 Actions 日志，不要手改生成的目录文件。</li>
+          <li>在安装了 QuickLauncher 的设备上，从网站点击“在 QuickLauncher 中打开”，允许浏览器打开应用，核对审核内容并由用户确认。启用插件，重复直接输入和所需能力的实际测试。链接只能打开应用并发起审核，不会自动确认安装。</li>
+        </ol>
+        <h3>4. 遇到限流或版本暂不可用</h3>
+        <p>GitHub 匿名 API 可能限流。可以等待额度恢复，再检查仓库和 Release；开发时使用已登录的 GitHub CLI 或授权的隔离测试请求可帮助排查，但 <code>gh</code> 登录不会自动为 QuickLauncher 配置认证，认证测试成功也不代表应用的匿名请求已恢复。不要在插件、网站、日志或 PR 中写入 Token。</p>
+        <p>网站卡片与目录同步、Pages 部署是不同步骤：卡片上线后版本仍可能暂不可用。同步约每四小时执行一次，网络故障、任务失败或部署延迟也会影响显示；核对正式 Release、白名单、Actions 状态与线上目录，目录超过 48 小时后应用会暂停使用。修复后重试同步与部署，再核对网站和应用。</p>
       </section>
       <footer><span>QuickLauncher 插件目录</span><a href="./">返回插件目录 ↗</a></footer>
     </div>
