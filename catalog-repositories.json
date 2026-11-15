@@ -2,5 +2,6 @@
   "peiel/quicklauncher-password-plugin",
   "peiel/quicklauncher-calculator-plugin",
   "peiel/quicklauncher-reminder-plugin",
-  "peiel/quicklauncher-timestamp-plugin"
+  "peiel/quicklauncher-timestamp-plugin",
+  "peiel/quicklauncher-text-stats-plugin"
 ]
