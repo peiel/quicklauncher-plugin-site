@@ -5,6 +5,7 @@ const path = require('node:path');
 
 const root = path.join(__dirname, '..');
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const installation = fs.readFileSync(path.join(root, 'install.html'), 'utf8');
 const cards = [...html.matchAll(/<article class="plugin-card" id="([^"]+)" data-search="([^"]+)">/g)]
   .map((match) => ({ id: match[1], dataset: { search: match[2] }, hidden: false }));
 assert.deepEqual(cards.map((card) => card.id), ['password-plugin', 'calculator-plugin', 'reminder-plugin', 'timestamp-plugin']);
@@ -22,7 +23,16 @@ const document = {
 vm.runInNewContext(fs.readFileSync(path.join(root, 'app.js'), 'utf8'), { document });
 assert.equal(elements['plugin-count'].textContent, '4');
 assert.ok(!html.includes('id="sidebar-count"'));
-assert.match(html, /插件目录<\/a>\s*<a href="#install">安装指南<\/a>\s*<a href="developer\.html">开发者<\/a>/);
+assert.match(html, /插件目录<\/a>\s*<a href="install\.html">安装指南<\/a>\s*<a href="developer\.html">开发者<\/a>/);
+assert.match(installation, /插件目录<\/a>\s*<a class="nav-current" href="install\.html" aria-current="page">安装指南<\/a>\s*<a href="developer\.html">开发者<\/a>/);
+assert.match(installation, /href="\.\/">插件目录<\/a>/);
+assert.ok(!html.includes('id="install"'));
+assert.ok(html.includes('href="install.html">查看安装说明'));
+let redirected = '';
+vm.runInNewContext(fs.readFileSync(path.join(root, 'app.js'), 'utf8'), {
+  document, window: { location: { hash: '#install', replace: (url) => { redirected = url; } } }
+});
+assert.equal(redirected, 'install.html');
 
 function search(query, visible) {
   elements['plugin-search'].value = query;

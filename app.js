@@ -1,4 +1,9 @@
 (() => {
+  // Redirect old installation-guide bookmarks to the dedicated page.
+  if (typeof window !== 'undefined' && window.location.hash === '#install') {
+    window.location.replace('install.html');
+    return;
+  }
   const search = document.querySelector('#plugin-search');
   const cards = [...document.querySelectorAll('.plugin-card')];
   const empty = document.querySelector('#empty-state');
