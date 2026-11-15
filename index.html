@@ -51,7 +51,10 @@
             <p class="plugin-summary">安全生成随机强密码，回车即可复制到剪贴板。支持自定义长度。</p>
             <div class="plugin-meta"><span>QuickLauncher</span><span class="meta-dot">·</span><span>Shell</span><span class="meta-dot">·</span><span>MIT</span></div>
           </div>
-          <a class="plugin-action" href="#install">安装说明 <span aria-hidden="true">↗</span></a>
+          <div class="plugin-actions">
+            <a class="plugin-action" href="quicklauncher://install?repo=peiel%2Fquicklauncher-password-plugin">在 QuickLauncher 中打开 <span aria-hidden="true">↗</span></a>
+            <a class="install-guide-link" href="#install">查看安装说明</a>
+          </div>
         </article>
         <div id="empty-state" class="empty-state" hidden><strong>没有找到匹配的插件</strong><span>试试其他关键词。</span></div>
         <div class="catalog-foot"><span>显示 <span id="result-count">1</span> 个插件</span><a href="https://github.com/peiel/quicklauncher-password-plugin" target="_blank" rel="noopener noreferrer">查看插件源码 <span aria-hidden="true">↗</span></a></div>
@@ -59,15 +62,16 @@
 
       <section class="details" id="install" aria-labelledby="install-heading">
         <div class="details-heading"><div><p class="section-label">GET STARTED</p><h2 id="install-heading">安装密码生成插件</h2></div><a class="release-link" href="https://github.com/peiel/quicklauncher-password-plugin/releases/tag/v1.1.0" target="_blank" rel="noopener noreferrer">查看 v1.1.0 Release <span aria-hidden="true">↗</span></a></div>
-        <p class="details-intro">当前通过 QuickLauncher 内的 GitHub 插件入口安装。安装前可以查看版本、源码和文件变化。</p>
+        <p class="details-intro">点击「在 QuickLauncher 中打开」，应用会从 GitHub 获取插件并展示审核内容；确认后才会安装。浏览器可能会询问是否允许打开应用。</p>
         <div class="install-grid">
           <ol class="steps">
-            <li><span class="step-number">01</span><div><strong>打开插件设置</strong><p>在 QuickLauncher 中进入「设置 → 脚本与插件 → 发现插件」。</p></div></li>
-            <li><span class="step-number">02</span><div><strong>查找并审查插件</strong><p>输入下方仓库名，选择「查看并安装」，审查内容后确认。</p><code>peiel/quicklauncher-password-plugin</code></div></li>
+            <li><span class="step-number">01</span><div><strong>在 QuickLauncher 中打开</strong><p><a class="install-guide-link" href="quicklauncher://install?repo=peiel%2Fquicklauncher-password-plugin">打开密码生成插件 ↗</a>，并在浏览器提示时允许打开应用。</p></div></li>
+            <li><span class="step-number">02</span><div><strong>审查并安装</strong><p>在 QuickLauncher 中检查来源、版本和文件变化，确认后安装。</p></div></li>
             <li><span class="step-number">03</span><div><strong>启用并使用</strong><p>安装后在「已安装」中启用插件。输入 <code>gpwd</code>，或输入 <code>gpwd 32</code> 指定长度。</p></div></li>
           </ol>
           <aside class="security-card"><div class="security-icon" aria-hidden="true">✳</div><h3>使用前了解</h3><p>插件以当前用户身份运行。请只安装信任的代码，并在启用前检查来源和内容。</p><a href="https://github.com/peiel/quicklauncher-password-plugin" target="_blank" rel="noopener noreferrer">查看 GitHub 源码 <span aria-hidden="true">↗</span></a></aside>
         </div>
+        <p class="manual-install">无法打开应用？请确认已安装支持此功能的 QuickLauncher 版本，或在「设置 → 脚本与插件 → 发现插件」中搜索 <code>peiel/quicklauncher-password-plugin</code>，再选择「查看并安装」。</p>
       </section>
       <footer><span>QuickLauncher 插件目录</span><span>为你的日常工作准备。</span></footer>
     </div>
