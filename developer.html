@@ -96,7 +96,7 @@ else:
 print(json.dumps(result, ensure_ascii=False))</code></pre>
         <p>在该目录运行下面的命令，预期输出包含 <code>copyAndShow</code> 和 <code>Hello</code> 的 JSON。此命令只运行脚本，不会操作 QuickLauncher 或剪贴板。</p>
         <pre><code>printf '%s\n' '{"version":1,"arguments":"Hello"}' | python3 main.py</code></pre>
-        <p>接着在 QuickLauncher 的“设置 → 脚本与插件 → 发现插件”点击“导入插件…”，选择这个目录。查看代码并启用后，输入 <code>echo Hello</code>，选择插件执行。Python 需要本机已有可用的 Python 3；可在“运行环境”中配置解释器。</p>
+        <p>接着在 QuickLauncher 的“设置 → 插件 → 发现插件”点击“导入插件…”，选择这个目录。查看代码并启用后，输入 <code>echo Hello</code>，选择插件执行。Python 需要本机已有可用的 Python 3；可在“运行环境”中配置解释器。</p>
         <div class="docs-note">示例声明了选区能力：只输入 <code>echo</code> 并执行时，应用会尝试读取唤起前的选中文字。没有这项需求时，请删除 <code>acceptsSelectedText</code>。</div>
       </section>
 
@@ -146,7 +146,7 @@ print(json.dumps(result, ensure_ascii=False))</code></pre>
 
       <section class="docs-section" id="install" aria-labelledby="install-title">
         <p class="section-label">05 / INSTALL</p><h2 id="install-title">本地安装与调试</h2>
-        <ol class="docs-list"><li>在“设置 → 脚本与插件 → 发现插件”选择“导入插件…”，选包含清单的目录。</li><li>插件默认停用。在“已安装”检查文件后启用；若声明选区能力，启用时会说明。需要时在“设置 → 权限”自行管理系统授权。</li><li>输入完整触发词和可选参数，选中结果执行；也可在设置中调整触发词及 Python、Ruby、Shell 或 AppleScript 解释器路径。</li><li>导入时会复制文件，源目录改动不会自动同步；修改已安装副本后，需检查代码并重新启用。要重新导入相同 ID，需先删除旧副本；请留意保存自定义设置。请使用新版 QuickLauncher 以支持本页介绍的协议。</li></ol>
+        <ol class="docs-list"><li>在“设置 → 插件 → 发现插件”选择“导入插件…”，选包含清单的目录。</li><li>插件默认停用。在“已安装”检查文件后启用；若声明选区能力，启用时会说明。需要时在“设置 → 权限”自行管理系统授权。</li><li>输入完整触发词和可选参数，选中结果执行；也可在设置中调整触发词及 Python、Ruby、Shell 或 AppleScript 解释器路径。</li><li>导入时会复制文件，源目录改动不会自动同步；修改已安装副本后，需检查代码并重新启用。要重新导入相同 ID，需先删除旧副本；请留意保存自定义设置。请使用新版 QuickLauncher 以支持本页介绍的协议。</li></ol>
         <p>参考完整开源插件：<a href="https://github.com/peiel/quicklauncher-calculator-plugin">计算器</a>、<a href="https://github.com/peiel/quicklauncher-reminder-plugin">定时提醒</a>、<a href="https://github.com/peiel/quicklauncher-password-plugin">密码生成</a>。</p>
       </section>
 
