@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="QuickLauncher 插件开发指南：协议、能力、安装和发布。">
+  <title>开发者 · QuickLauncher 插件目录</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="./" aria-label="QuickLauncher 插件目录首页">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3.5 20.5 12 12 20.5 3.5 12 12 3.5Z" fill="currentColor"/><path d="m9.1 12 1.8 1.8 4.1-4.1" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>QuickLauncher<span class="brand-divider">/</span><span class="brand-product">插件目录</span></span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="./">插件目录</a>
+        <a class="nav-current" href="developer.html" aria-current="page">开发者</a>
+        <a class="nav-source" href="https://github.com/peiel/quicklauncher-plugin-site" target="_blank" rel="noopener noreferrer">网站源码 <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="layout docs-layout">
+    <aside class="sidebar docs-sidebar" aria-label="开发指南目录">
+      <p class="sidebar-heading">开发指南</p>
+      <a class="sidebar-link" href="#quickstart">快速开始</a>
+      <a class="sidebar-link" href="#manifest">插件清单</a>
+      <a class="sidebar-link" href="#protocol">输入与输出</a>
+      <a class="sidebar-link" href="#capabilities">宿主能力与权限</a>
+      <a class="sidebar-link" href="#install">安装与测试</a>
+      <a class="sidebar-link" href="#publish">发布到 GitHub</a>
+      <a class="sidebar-link" href="#catalog">申请目录收录</a>
+    </aside>
+    <div class="content docs-content">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> QUICKLAUNCHER / DEVELOPERS</div>
+      <div class="intro docs-intro"><div><h1>开发者指南</h1><p>用熟悉的语言，给 QuickLauncher 添加一个小功能。</p></div><div class="open-source"><span class="open-dot"></span>脚本协议 v1</div></div>
+      <div class="docs-lead"><strong>从一个目录开始</strong><p>编写清单和脚本 → 本地导入测试 → 发布 GitHub Release → 申请展示站收录。文本参数、选中文字、复制结果和定时提醒由应用提供。</p></div>
+      <nav class="docs-mobile-nav" aria-label="开发指南目录"><a href="#quickstart">快速开始</a><a href="#capabilities">能力与权限</a><a href="#publish">发布插件</a><a href="#catalog">目录收录</a></nav>
+
+      <section class="docs-section" id="quickstart" aria-labelledby="quickstart-title">
+        <p class="section-label">01 / QUICK START</p><h2 id="quickstart-title">创建你的第一个插件</h2>
+        <p>创建一个目录，放入以下两个文件。本例将输入的文本原样显示并复制；无参数时可使用前台应用中选中的文本。</p>
+        <h3>manifest.json</h3>
+        <pre><code data-example="manifest">{
+  "id": "com.example.echo",
+  "name": "文本示例",
+  "description": "显示并复制文本",
+  "keyword": "echo",
+  "version": "1.0.0",
+  "author": "Example",
+  "runtime": "python",
+  "entry": "main.py",
+  "input": "arguments",
+  "acceptsSelectedText": true
+}</code></pre>
+        <h3>main.py</h3>
+        <pre><code data-example="script">import json
+import sys
+import unicodedata
+
+request = json.load(sys.stdin)
+text = request.get("arguments", "").strip()
+if request.get("version") != 1:
+    result = {"version": 1, "action": "error", "text": "不支持的协议版本"}
+elif not text or len(text) &gt; 200 or any(unicodedata.category(c) == "Cc" for c in text):
+    result = {"version": 1, "action": "error", "text": "请输入不超过 200 字的单行文本"}
+else:
+    result = {"version": 1, "action": "copyAndShow", "text": text}
+print(json.dumps(result, ensure_ascii=False))</code></pre>
+        <p>在该目录运行下面的命令，预期输出包含 <code>copyAndShow</code> 和 <code>Hello</code> 的 JSON。此命令只运行脚本，不会操作 QuickLauncher 或剪贴板。</p>
+        <pre><code>printf '%s\n' '{"version":1,"arguments":"Hello"}' | python3 main.py</code></pre>
+        <p>接着在 QuickLauncher 的“设置 → 脚本与插件 → 发现插件”点击“导入插件…”，选择这个目录。查看代码并启用后，输入 <code>echo Hello</code>，选择插件执行。Python 需要本机已有可用的 Python 3；可在“运行环境”中配置解释器。</p>
+        <div class="docs-note">示例声明了选区能力：只输入 <code>echo</code> 并执行时，应用会尝试读取唤起前的选中文字。没有这项需求时，请删除 <code>acceptsSelectedText</code>。</div>
+      </section>
+
+      <section class="docs-section" id="manifest" aria-labelledby="manifest-title">
+        <p class="section-label">02 / MANIFEST</p><h2 id="manifest-title">插件清单</h2>
+        <p><code>manifest.json</code> 是插件目录根部的 UTF-8 JSON 文件。以下字段除标注可选外均为字符串且必填。</p>
+        <div class="docs-table-wrap"><table><thead><tr><th>字段</th><th>说明</th></tr></thead><tbody>
+          <tr><td><code>id</code></td><td>唯一标识，最多 120 字符；以英文字母或数字开头，之后可用字母、数字、点、下划线、连字符。建议使用反向域名，发布后保持稳定。</td></tr>
+          <tr><td><code>name</code> / <code>description</code></td><td>显示名称与功能说明；名称不能为空。</td></tr>
+          <tr><td><code>keyword</code></td><td>触发词，1–32 个英文字母、数字、下划线或连字符，大小写不敏感。用户可修改；相同触发词的插件不能同时启用。</td></tr>
+          <tr><td><code>version</code> / <code>author</code></td><td>版本与作者信息。建议发布版本与 Git 标签保持一致。</td></tr>
+          <tr><td><code>runtime</code></td><td><code>shell</code>、<code>python</code>、<code>ruby</code>、<code>applescript</code> 或 <code>executable</code>。前四种可在应用中配置解释器绝对路径；<code>executable</code> 的入口需有执行权限。</td></tr>
+          <tr><td><code>entry</code></td><td>入口文件的相对路径，必须存在；不使用绝对路径或 <code>..</code> 路径段。应用以插件目录作为工作目录。</td></tr>
+          <tr><td><code>input</code>（可选）</td><td><code>arguments</code> 接收触发词后的文本；<code>passwordLength</code> 接收密码长度；不声明时仅匹配触发词。</td></tr>
+          <tr><td><code>acceptsSelectedText</code>（可选）</td><td>布尔值。设为 <code>true</code> 时必须同时声明 <code>input: "arguments"</code>；无参数执行时才尝试读取选区。</td></tr>
+          <tr><td><code>sourceURL</code>（可选）</td><td>插件源码地址。</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section class="docs-section" id="protocol" aria-labelledby="protocol-title">
+        <p class="section-label">03 / PROTOCOL</p><h2 id="protocol-title">标准输入与输出</h2>
+        <p>仅在用户选择插件并执行时启动脚本。应用通过标准输入发送一个 JSON 请求；脚本向标准输出写一个完整 JSON 对象，并以成功退出码结束。不要在标准输出混入日志；标准错误不会展示或记录。</p>
+        <pre><code>{"version":1}
+{"version":1,"arguments":"Hello"}
+{"version":1,"passwordLength":24}</code></pre>
+        <p>请求始终包含协议 <code>version: 1</code>。<code>arguments</code> 是触发词后的原始文本，最多 1024 UTF-8 字节；<code>passwordLength</code> 为 8–128 的整数，用户未临时指定时使用应用设置的默认长度。按清单声明选择输入类型；仅声明 <code>arguments</code> 的插件可以接收选区。</p>
+        <div class="docs-table-wrap"><table><thead><tr><th>返回 action</th><th>行为与限制</th><th>示例</th></tr></thead><tbody>
+          <tr><td><code>copy</code></td><td>复制 <code>text</code>；不在面板显示其内容，适合敏感结果。</td><td><code>{"version":1,"action":"copy","text":"value"}</code></td></tr>
+          <tr><td><code>copyAndShow</code></td><td>复制并显示 <code>text</code>，面板保持打开；不适合密码等敏感内容。</td><td><code>{"version":1,"action":"copyAndShow","text":"9"}</code></td></tr>
+          <tr><td><code>message</code></td><td>显示短暂提示。</td><td><code>{"version":1,"action":"message","text":"完成"}</code></td></tr>
+          <tr><td><code>error</code></td><td>显示错误并保持面板。</td><td><code>{"version":1,"action":"error","text":"输入无效"}</code></td></tr>
+          <tr><td><code>scheduleReminder</code></td><td>由应用安排一次系统通知；<code>seconds</code> 为 1–2,592,000 的整数（最长 30 天）。</td><td><code>{"version":1,"action":"scheduleReminder","text":"喝水","seconds":600}</code></td></tr>
+        </tbody></table></div>
+        <p>所有响应的 <code>text</code> 均不能为空；<code>copyAndShow</code>、<code>error</code> 和提醒文本最多 200 字符且不能含控制字符，提醒文本不能仅为空白。脚本执行超时为 5 秒，标准输出上限 65,536 字节；超限或 JSON 无效将被拒绝。</p>
+      </section>
+
+      <section class="docs-section" id="capabilities" aria-labelledby="capabilities-title">
+        <p class="section-label">04 / CAPABILITIES</p><h2 id="capabilities-title">应用提供的能力</h2>
+        <div class="capability-grid">
+          <article><h3>文本参数</h3><p>声明 <code>input: "arguments"</code>，执行 <code>keyword 参数</code> 时获得文本；应用不会把脚本查询写入使用历史。</p></article>
+          <article><h3>读取选中文字</h3><p>额外声明 <code>acceptsSelectedText: true</code>。只有用户无参数执行插件时才读取唤起前应用的选区，作为 <code>arguments</code> 传入。需用户授予辅助功能权限，目标应用也须提供选区；失败时用户可直接输入。不会模拟复制按键或读取剪贴板。</p></article>
+          <article><h3>显示或复制结果</h3><p>返回 <code>copy</code>、<code>copyAndShow</code>、<code>message</code> 或 <code>error</code>；由应用处理界面和剪贴板。剪贴板内容可能被有权限的其他应用读取。</p></article>
+          <article><h3>定时提醒</h3><p>返回 <code>scheduleReminder</code>，应用向系统申请一次性通知；首次使用时可能请求通知授权。显示受系统通知设置和专注模式影响，脚本无需后台等待。</p></article>
+        </div>
+        <div class="docs-note"><strong>权限与信任：</strong>脚本以当前用户身份运行，不受 QuickLauncher 沙箱限制，可自行访问文件、网络或其他应用；AppleScript 控制其他应用可能需要系统自动化权限。请在说明中明确数据用途，不上传敏感数据，不把凭证写入插件包。选区读取需由用户自行授权，标记为安全输入的控件不会读取。应用未提供任意插件访问书签、查询历史或密码的宿主 API。</div>
+      </section>
+
+      <section class="docs-section" id="install" aria-labelledby="install-title">
+        <p class="section-label">05 / INSTALL</p><h2 id="install-title">本地安装与调试</h2>
+        <ol class="docs-list"><li>在“设置 → 脚本与插件 → 发现插件”选择“导入插件…”，选包含清单的目录。</li><li>插件默认停用。在“已安装”检查文件后启用；若声明选区能力，启用时会说明。需要时在“设置 → 权限”自行管理系统授权。</li><li>输入完整触发词和可选参数，选中结果执行；也可在设置中调整触发词及 Python、Ruby、Shell 或 AppleScript 解释器路径。</li><li>导入时会复制文件，源目录改动不会自动同步；修改已安装副本后，需检查代码并重新启用。要重新导入相同 ID，需先删除旧副本；请留意保存自定义设置。请使用新版 QuickLauncher 以支持本页介绍的协议。</li></ol>
+        <p>参考完整开源插件：<a href="https://github.com/peiel/quicklauncher-calculator-plugin">计算器</a>、<a href="https://github.com/peiel/quicklauncher-reminder-plugin">定时提醒</a>、<a href="https://github.com/peiel/quicklauncher-password-plugin">密码生成</a>。</p>
+      </section>
+
+      <section class="docs-section" id="publish" aria-labelledby="publish-title">
+        <p class="section-label">06 / RELEASE</p><h2 id="publish-title">发布到 GitHub</h2>
+        <p>发布公开仓库与正式 Release 后，即可在应用内用 <code>owner/repo</code> 查找并审查安装。发布前确认插件文件不包含密钥或个人数据，并使用已经测试的 Git 提交打包。</p>
+        <ol class="docs-list"><li>在 GitHub 创建一个空的公开仓库，将插件提交并配置 <code>origin</code> 指向它。新建仓库可在插件目录中执行以下命令，将 <code>OWNER/REPO</code> 替换成自己的仓库名；已有 Git 仓库可跳过初始化和添加已有 remote 的步骤。</li></ol>
+        <pre><code>git init -b main
+git add manifest.json main.py
+git commit -m "Add plugin"
+git remote add origin https://github.com/OWNER/REPO.git</code></pre>
+        <p>可添加 <code>quicklauncher-plugin</code> topic 作为仓库标记；应用内未收录仓库使用完整 <code>owner/repo</code> 查找。</p>
+        <ol class="docs-list" start="2"><li>下载 <a href="tools/package_github_plugin.py" download>插件打包工具</a>（MIT 协议，<a href="tools/LICENSE">许可证</a>；需要 Python 3.9+），创建并推送标签，从标签导出文件并打包。下面命令在插件 Git 仓库根目录执行：</li></ol>
+        <pre><code>git tag v1.0.0
+git push origin main v1.0.0
+WORK_DIR="$(mktemp -d "${TMPDIR:-/tmp}/quicklauncher-release.XXXXXX")"
+mkdir "$WORK_DIR/source"
+git archive v1.0.0 | tar -x -C "$WORK_DIR/source"
+curl -fsSL https://plugin.quicklauncher.flyee.tech/tools/package_github_plugin.py -o "$WORK_DIR/package_github_plugin.py"
+python3 "$WORK_DIR/package_github_plugin.py" "$WORK_DIR/source" "$WORK_DIR/my-plugin.quicklauncher.json"</code></pre>
+        <p>如果标签已存在，请跳过创建标签的命令。替换 <code>main</code> 为仓库的实际分支名。工具拒绝 <code>.git</code>、符号链接、特殊文件、常见凭证文件、无效清单及超限内容，不会覆盖现有输出；插件最多 1000 个文件、原始内容总计不超过 10 MB、JSON 资产不超过 16 MB。自动检查不能识别所有敏感信息，请逐项检查它列出的文件。</p>
+        <p>在 GitHub 创建正式 Release 并上传唯一一个以 <code>.quicklauncher.json</code> 结尾的附件。例如，安装 GitHub CLI 并登录后：</p>
+        <pre><code>gh release create v1.0.0 "$WORK_DIR/my-plugin.quicklauncher.json" \
+  --repo OWNER/REPO --verify-tag --title v1.0.0 --notes "首个版本"</code></pre>
+        <p>将 <code>OWNER/REPO</code> 替换为你的公开仓库。源码 ZIP 不能代替该附件。应用会显示仓库、标签、提交和资产摘要并在用户确认后安装；摘要一致不证明作者身份或资产确实由该提交构建。后续使用新标签发布更新，用户审核变更后确认。</p>
+        <p>想提供直接打开应用的链接，可使用 <code>quicklauncher://install?repo=OWNER%2FREPO</code>，将仓库名替换为你的值。链接只触发查找和审核，不能绕过用户确认。</p>
+      </section>
+
+      <section class="docs-section" id="catalog" aria-labelledby="catalog-title">
+        <p class="section-label">07 / CATALOG</p><h2 id="catalog-title">申请目录收录</h2>
+        <p>GitHub 仓库可先通过 <code>owner/repo</code> 安装；添加 topic 不会自动出现在展示站。若希望进入应用的插件目录和网站列表，请向<a href="https://github.com/peiel/quicklauncher-plugin-site">插件目录网站仓库</a>提交 Pull Request：将公开仓库名加入 <code>catalog-repositories.json</code>，并在 <code>index.html</code> 补充插件卡片、用途、版本及安装与源码链接。</p>
+        <p>维护者审核后，GitHub Actions 定期同步白名单中的最新正式 Release、标签提交和资产摘要到 <code>catalog.json</code>；网站卡片内容和版本目前需要维护。收录的标签须以英文字母或数字开头，后续仅使用字母、数字、点、下划线或连字符（总长最多 200）；附件名也须以字母或数字开头、仅含上述字符，并以 <code>.quicklauncher.json</code> 结尾。</p>
+        <p>目录快照可能延迟；超过 48 小时后，应用会暂停使用该目录安装或更新。目录不可用时，按仓库名查找也可能暂时不可用；请稍后重试。插件资产仍从 GitHub 下载。</p>
+      </section>
+      <footer><span>QuickLauncher 插件目录</span><a href="./">返回插件目录 ↗</a></footer>
+    </div>
+  </main>
+</body>
+</html>
