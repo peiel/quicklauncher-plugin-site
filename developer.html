@@ -117,19 +117,22 @@ print(json.dumps(result, ensure_ascii=False))</code></pre>
           <tr><td><code>sourceURL</code>（可选）</td><td>插件源码地址。</td></tr>
         </tbody></table></div>
         <h3>被动触发规则</h3>
-        <p>在插件清单中添加如下 <code>passiveTrigger</code>，可在搜索输入由允许的字符组成、且每组必需字符至少出现一个时触发。例如，规则可匹配 <code>1+1</code>。用户可在插件设置中查看匹配规则并独立开启或关闭被动触发；关闭后仍可通过原有触发词执行。</p>
+        <p>在插件清单中添加如下 <code>passiveTrigger</code>，可在搜索输入由允许的字符组成、且每组必需字符至少出现一个时触发。例如，规则可匹配 <code>1+1</code>；<code>123</code> 缺少运算符、<code>1+1a</code> 包含不允许的字符，均不会触发。</p>
         <pre><code data-example="passive-trigger">{
   "type": "characterSet",
   "allowedCharacters": "0123456789 +-*/().×÷",
   "requiredCharacterGroups": ["0123456789", "+-*/×÷"]
 }</code></pre>
         <p><code>allowedCharacters</code> 和每个必需字符组须为 1–128 个 Unicode 字符，不得包含控制字符或换行；<code>requiredCharacterGroups</code> 须包含 1–8 组，每组字符都必须属于允许的字符。匹配输入最多 256 UTF-8 字节。</p>
-        <div class="docs-note"><strong>自动运行与隐私：</strong>输入符合规则时，应用会为最多三个匹配的已启用插件运行预览，不必先选中结果。脚本会收到匹配的文本，仍以当前用户身份执行，可以访问文件和网络；请避免产生副作用、读取或上传不必要的数据，并向用户说明用途。</div>
+        <h3>用户如何控制被动触发</h3>
+        <p>用户可在“设置 → 插件 → 已安装”，打开对应插件的“设置”，在“被动触发”中查看允许字符和必需字符组，并独立开关被动触发。没有单独设置时，声明此规则的插件默认开启被动触发；插件整体也必须启用，匹配时才会自动运行。关闭被动触发后，原有触发词仍可使用。</p>
+        <p>开关选择会保存在本机，重启应用或更新插件后仍会保留。安装或更新后插件整体保持停用，用户需检查并重新启用；被动开关本身不会替代插件启用和更新审核。</p>
+        <div class="docs-note"><strong>自动运行与隐私：</strong>输入符合规则时，应用会为最多三个匹配且被动触发已开启的已启用插件运行预览，不必先选中结果。脚本会收到匹配的文本，仍以当前用户身份执行，可以访问文件和网络；请避免产生副作用、读取或上传不必要的数据，并向用户说明用途。</div>
       </section>
 
       <section class="docs-section" id="protocol" aria-labelledby="protocol-title">
         <p class="section-label">03 / PROTOCOL</p><h2 id="protocol-title">标准输入与输出</h2>
-        <p>普通触发词插件在用户选择结果后启动；被动触发插件在输入匹配时自动启动以预览。应用通过标准输入发送一个 JSON 请求；脚本向标准输出写一个完整 JSON 对象，并以成功退出码结束。不要在标准输出混入日志；标准错误不会展示或记录。</p>
+        <p>普通触发词插件在用户选择结果后启动；已启用插件的被动触发开关开启时，匹配输入可自动启动插件以预览。应用通过标准输入发送一个 JSON 请求；脚本向标准输出写一个完整 JSON 对象，并以成功退出码结束。不要在标准输出混入日志；标准错误不会展示或记录。</p>
         <pre><code>{"version":1}
 {"version":1,"arguments":"Hello"}
 {"version":1,"passwordLength":24}</code></pre>
@@ -149,7 +152,7 @@ print(json.dumps(result, ensure_ascii=False))</code></pre>
         <p class="section-label">04 / CAPABILITIES</p><h2 id="capabilities-title">应用提供的能力</h2>
         <div class="capability-grid">
           <article><h3>文本参数</h3><p>声明 <code>input: "arguments"</code>，执行 <code>keyword 参数</code> 时获得文本；应用不会把脚本查询写入使用历史。</p></article>
-          <article><h3>被动匹配</h3><p>声明 <code>passiveTrigger</code> 后，匹配输入时脚本自动运行并接收输入；使用 <code>copyAndShow</code> 返回预览，用户确认后复制。用户可独立关闭被动触发，保留触发词执行。</p></article>
+          <article><h3>被动匹配</h3><p>声明 <code>passiveTrigger</code> 后，启用插件和被动触发时，匹配输入会自动运行脚本并接收输入；使用 <code>copyAndShow</code> 返回预览，用户确认后复制。用户可独立关闭被动触发，保留触发词执行。</p></article>
           <article><h3>读取选中文字</h3><p>额外声明 <code>acceptsSelectedText: true</code>。只有用户无参数执行插件时才读取唤起前应用的选区，作为 <code>arguments</code> 传入。需用户授予辅助功能权限，目标应用也须提供选区；失败时用户可直接输入。不会模拟复制按键或读取剪贴板。</p></article>
           <article><h3>显示或复制结果</h3><p>返回 <code>copy</code>、<code>copyAndShow</code>、<code>message</code> 或 <code>error</code>；由应用处理界面和剪贴板。剪贴板内容可能被有权限的其他应用读取。</p></article>
           <article><h3>定时提醒</h3><p>返回 <code>scheduleReminder</code>，应用向系统申请一次性通知；首次使用时可能请求通知授权。显示受系统通知设置和专注模式影响，脚本无需后台等待。</p></article>
@@ -160,6 +163,7 @@ print(json.dumps(result, ensure_ascii=False))</code></pre>
       <section class="docs-section" id="install" aria-labelledby="install-title">
         <p class="section-label">05 / INSTALL</p><h2 id="install-title">本地安装与调试</h2>
         <ol class="docs-list"><li>在“设置 → 插件 → 发现插件”选择“导入插件…”，选包含清单的目录。</li><li>插件默认停用。在“已安装”检查文件后启用；若声明选区能力，启用时会说明。需要时在“设置 → 权限”自行管理系统授权。</li><li>输入完整触发词和可选参数，选中结果执行；声明被动触发时也可输入匹配内容预览并确认复制。可在设置中调整触发词及 Python、Ruby、Shell 或 AppleScript 解释器路径。</li><li>导入时会复制文件，源目录改动不会自动同步；修改已安装副本后，需检查代码并重新启用。要重新导入相同 ID，需先删除旧副本；请留意保存自定义设置。请使用新版 QuickLauncher 以支持本页介绍的协议。</li></ol>
+        <p>测试被动触发时，可在插件“设置 → 被动触发”中依次验证：开启时匹配输入显示预览；关闭后匹配输入不再自动运行，原触发词仍可执行；再次开启后预览恢复。另用不匹配的输入检查规则不会误触发。</p>
         <p>参考完整开源插件：<a href="https://github.com/peiel/quicklauncher-calculator-plugin">计算器</a>、<a href="https://github.com/peiel/quicklauncher-reminder-plugin">定时提醒</a>、<a href="https://github.com/peiel/quicklauncher-password-plugin">密码生成</a>。</p>
       </section>
 
