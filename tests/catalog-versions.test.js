@@ -9,7 +9,7 @@ const script = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
 const cards = [...html.matchAll(/<article class="plugin-card" id="([^"]+)" data-search="([^"]+)" data-repository="([^"]+)">/g)]
   .map((m) => ({ id: m[1], dataset: { search: m[2], repository: m[3] }, version: { textContent: '版本待同步' },
     querySelector(selector) { return selector === '.version' ? this.version : null; } }));
-assert.equal(cards.length, 5);
+assert.equal(cards.length, 6);
 assert.ok(!/<span class="version">v\d/.test(html), '卡片不能写死版本');
 const elements = Object.fromEntries(['plugin-search', 'empty-state', 'result-count', 'search-status', 'plugin-count']
   .map((id) => [id, { value: '', textContent: '', hidden: false, addEventListener() {} }]));
@@ -19,7 +19,8 @@ const sample = { version: 1, generatedAt: Math.floor(Date.now() / 1000), entries
   { fullName: 'peiel/quicklauncher-calculator-plugin', tag: 'v1.0.0' },
   { fullName: 'peiel/quicklauncher-reminder-plugin', tag: 'v1.0.2' },
   { fullName: 'peiel/quicklauncher-timestamp-plugin', tag: 'v1.0.0' },
-  { fullName: 'peiel/quicklauncher-text-stats-plugin', tag: 'v1.0.0' }
+  { fullName: 'peiel/quicklauncher-text-stats-plugin', tag: 'v1.0.0' },
+  { fullName: 'peiel/quicklauncher-url-codec-plugin', tag: 'v1.0.0' }
 ] };
 async function run(fetcher) {
   for (const card of cards) card.version.textContent = '版本待同步';
@@ -32,7 +33,7 @@ async function run(fetcher) {
     assert.equal(options.cache, 'no-store');
     return Promise.resolve({ ok: true, json: () => Promise.resolve(sample) });
   });
-  assert.deepEqual(cards.map((card) => card.version.textContent), ['v1.1.1', 'v1.0.0', 'v1.0.2', 'v1.0.0', 'v1.0.0']);
+  assert.deepEqual(cards.map((card) => card.version.textContent), ['v1.1.1', 'v1.0.0', 'v1.0.2', 'v1.0.0', 'v1.0.0', 'v1.0.0']);
   const changed = { ...sample, entries: sample.entries.map((e, i) => i === 0 ? { ...e, tag: 'v1.2.0' } : e) };
   await run(() => Promise.resolve({ ok: true, json: () => Promise.resolve(changed) }));
   assert.equal(cards[0].version.textContent, 'v1.2.0');
