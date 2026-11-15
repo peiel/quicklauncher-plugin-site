@@ -117,7 +117,7 @@ print(json.dumps(result, ensure_ascii=False))</code></pre>
           <tr><td><code>sourceURL</code>（可选）</td><td>插件源码地址。</td></tr>
         </tbody></table></div>
         <h3>被动触发规则</h3>
-        <p>在插件清单中添加如下 <code>passiveTrigger</code>，可在搜索输入由允许的字符组成、且每组必需字符至少出现一个时触发。例如，规则可匹配 <code>1+1</code>，也可继续通过原有触发词执行。</p>
+        <p>在插件清单中添加如下 <code>passiveTrigger</code>，可在搜索输入由允许的字符组成、且每组必需字符至少出现一个时触发。例如，规则可匹配 <code>1+1</code>。用户可在插件设置中查看匹配规则并独立开启或关闭被动触发；关闭后仍可通过原有触发词执行。</p>
         <pre><code data-example="passive-trigger">{
   "type": "characterSet",
   "allowedCharacters": "0123456789 +-*/().×÷",
@@ -149,7 +149,7 @@ print(json.dumps(result, ensure_ascii=False))</code></pre>
         <p class="section-label">04 / CAPABILITIES</p><h2 id="capabilities-title">应用提供的能力</h2>
         <div class="capability-grid">
           <article><h3>文本参数</h3><p>声明 <code>input: "arguments"</code>，执行 <code>keyword 参数</code> 时获得文本；应用不会把脚本查询写入使用历史。</p></article>
-          <article><h3>被动匹配</h3><p>声明 <code>passiveTrigger</code> 后，匹配输入时脚本自动运行并接收输入；使用 <code>copyAndShow</code> 返回预览，用户确认后复制。</p></article>
+          <article><h3>被动匹配</h3><p>声明 <code>passiveTrigger</code> 后，匹配输入时脚本自动运行并接收输入；使用 <code>copyAndShow</code> 返回预览，用户确认后复制。用户可独立关闭被动触发，保留触发词执行。</p></article>
           <article><h3>读取选中文字</h3><p>额外声明 <code>acceptsSelectedText: true</code>。只有用户无参数执行插件时才读取唤起前应用的选区，作为 <code>arguments</code> 传入。需用户授予辅助功能权限，目标应用也须提供选区；失败时用户可直接输入。不会模拟复制按键或读取剪贴板。</p></article>
           <article><h3>显示或复制结果</h3><p>返回 <code>copy</code>、<code>copyAndShow</code>、<code>message</code> 或 <code>error</code>；由应用处理界面和剪贴板。剪贴板内容可能被有权限的其他应用读取。</p></article>
           <article><h3>定时提醒</h3><p>返回 <code>scheduleReminder</code>，应用向系统申请一次性通知；首次使用时可能请求通知授权。显示受系统通知设置和专注模式影响，脚本无需后台等待。</p></article>
