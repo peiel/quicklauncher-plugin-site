@@ -4,9 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="发现适用于 QuickLauncher 的开源插件，查看源码和安装说明。">
+  <meta name="theme-color" content="#f5f6f8">
+  <meta name="description" content="发现适用于 QuickLauncher 的开源插件，查看触发词、源码和安装说明。">
   <title>插件目录 · QuickLauncher</title>
-  <link rel="stylesheet" href="styles.css?v=20261115-6">
+  <link rel="stylesheet" href="styles.css?v=20261115-8">
   <script src="app.js?v=20261115-5" defer></script>
 </head>
 <body>
@@ -27,90 +28,114 @@
 
   <main class="layout catalog-layout">
     <div class="content" id="plugins">
-      <div class="eyebrow"><span class="eyebrow-dot"></span> QUICKLAUNCHER / PLUGINS</div>
       <div class="intro">
-        <div><h1>插件目录</h1><p>把常用的小功能，放进你的启动器。</p></div>
-        <div class="open-source"><span class="open-dot"></span>开源 · 本地运行</div>
+        <div><h1>插件目录</h1><p>先看触发词和源码，再决定是否安装。</p></div>
+        <p class="catalog-note">6 个开源插件，在 QuickLauncher 中本地运行。</p>
+      </div>
+
+      <div class="command-strip" aria-label="插件使用示例">
+        <div class="command-example"><code>pwd 32</code><span>生成 32 位随机密码</span></div>
+        <div class="command-example"><code>remind 10m 喝水</code><span>十分钟后发送提醒</span></div>
+        <div class="command-example"><code>ts now</code><span>获取当前时间戳</span></div>
       </div>
 
       <section class="catalog" aria-labelledby="catalog-heading">
         <div class="catalog-top">
-          <div><h2 id="catalog-heading">所有插件 <span class="count" id="plugin-count">6</span></h2><p>发现可以在 QuickLauncher 中使用的插件。</p></div>
-          <div class="search-wrap"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m12.5 12.5 4 4"/></svg><label class="visually-hidden" for="plugin-search">搜索插件</label><input id="plugin-search" type="search" placeholder="搜索插件" autocomplete="off"></div>
+          <div><h2 id="catalog-heading">全部插件 <span class="count" id="plugin-count">6</span></h2><p>按名称、用途或触发词搜索。</p></div>
+          <div class="search-wrap"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m12.5 12.5 4 4"/></svg><label class="visually-hidden" for="plugin-search">搜索插件</label><input id="plugin-search" type="search" placeholder="搜索插件或触发词" autocomplete="off"></div>
         </div>
         <p class="search-status visually-hidden" id="search-status" role="status" aria-live="polite"></p>
         <noscript><p>启用 JavaScript 后可查看同步的插件版本，也可通过 GitHub 查看最新发布。</p></noscript>
-        <article class="plugin-card" id="password-plugin" data-search="密码生成 password pwd gpwd 随机 强密码" data-repository="peiel/quicklauncher-password-plugin">
-          <div class="plugin-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><rect x="12" y="21" width="24" height="18" rx="5" fill="currentColor" opacity=".16"/><path d="M17 21v-5.1a7 7 0 0 1 14 0V21M15.7 21h16.6a3.7 3.7 0 0 1 3.7 3.7v10.6a3.7 3.7 0 0 1-3.7 3.7H15.7a3.7 3.7 0 0 1-3.7-3.7V24.7a3.7 3.7 0 0 1 3.7-3.7ZM24 28v4" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></div>
+
+        <article class="plugin-card" id="password-plugin" data-search="密码生成 password pwd pwd 32 gpwd 随机 强密码 长度" data-repository="peiel/quicklauncher-password-plugin">
+          <div class="plugin-trigger"><code>pwd</code><span>触发词</span></div>
           <div class="plugin-main">
-            <div class="plugin-title-row"><h3>密码生成</h3><span class="version">版本待同步</span><a class="plugin-source" href="https://github.com/peiel/quicklauncher-password-plugin" target="_blank" rel="noopener noreferrer" aria-label="查看密码生成的 GitHub 源码（在新窗口打开）"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.53v-2.08c-3.09.67-3.74-1.32-3.74-1.32-.5-1.28-1.23-1.62-1.23-1.62-1.01-.7.08-.69.08-.69 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.6 1.21 3.23.92.1-.72.39-1.21.71-1.49-2.46-.28-5.04-1.23-5.04-5.49 0-1.21.43-2.2 1.14-2.98-.12-.28-.5-1.42.11-2.94 0 0 .93-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.12-1.44 3.05-1.14 3.05-1.14.6 1.52.22 2.66.11 2.94.71.78 1.14 1.77 1.14 2.98 0 4.27-2.59 5.2-5.06 5.48.4.34.75 1.01.75 2.04v3.1c0 .29.2.64.77.53A11.1 11.1 0 0 0 12 .9Z"/></svg><span>GitHub 源码</span></a></div>
-            <p class="plugin-summary">输入 pwd 即可生成并显示随机强密码，回车复制；支持自定义长度。</p>
-            <div class="plugin-meta"><span>QuickLauncher</span><span class="meta-dot">·</span><span>Shell</span><span class="meta-dot">·</span><span>MIT</span><span class="meta-dot">·</span><span>即时预览需要支持预览的新版 QuickLauncher</span></div>
+            <div class="plugin-title-row"><h3>密码生成</h3><span class="version">版本待同步</span></div>
+            <p class="plugin-summary">生成并预览随机强密码，回车复制当前显示的结果；支持自定义长度。</p>
+            <div class="plugin-meta"><span>Shell</span><span>MIT</span></div>
+            <p class="plugin-compatibility">即时预览需要支持预览的新版 QuickLauncher</p>
           </div>
           <div class="plugin-actions">
-            <a class="plugin-action" href="quicklauncher://install?repo=peiel%2Fquicklauncher-password-plugin" aria-label="在 QuickLauncher 中打开密码生成">在 QuickLauncher 中打开 <span aria-hidden="true">↗</span></a>
+            <a class="plugin-source" href="https://github.com/peiel/quicklauncher-password-plugin" target="_blank" rel="noopener noreferrer" aria-label="查看密码生成的 GitHub 源码（在新窗口打开）">GitHub 源码 <span aria-hidden="true">↗</span></a>
+            <a class="plugin-action" href="quicklauncher://install?repo=peiel%2Fquicklauncher-password-plugin" aria-label="在 QuickLauncher 中打开密码生成">在 QuickLauncher 中打开</a>
           </div>
         </article>
+
         <article class="plugin-card" id="calculator-plugin" data-search="计算器 计算 公式 选中文本 calculator calc 数学" data-repository="peiel/quicklauncher-calculator-plugin">
-          <div class="plugin-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><rect x="12" y="7" width="24" height="34" rx="5" fill="currentColor" opacity=".16"/><rect x="12" y="7" width="24" height="34" rx="5" stroke="currentColor" stroke-width="2"/><path d="M17 15h14M18 23h3m6 0h3m-12 6h3m6 0h3m-12 6h3m6 0h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="plugin-trigger"><code>calc</code><span>触发词</span></div>
           <div class="plugin-main">
-            <div class="plugin-title-row"><h3>计算器</h3><span class="version">版本待同步</span><a class="plugin-source" href="https://github.com/peiel/quicklauncher-calculator-plugin" target="_blank" rel="noopener noreferrer" aria-label="查看计算器的 GitHub 源码（在新窗口打开）"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.53v-2.08c-3.09.67-3.74-1.32-3.74-1.32-.5-1.28-1.23-1.62-1.23-1.62-1.01-.7.08-.69.08-.69 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.6 1.21 3.23.92.1-.72.39-1.21.71-1.49-2.46-.28-5.04-1.23-5.04-5.49 0-1.21.43-2.2 1.14-2.98-.12-.28-.5-1.42.11-2.94 0 0 .93-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.12-1.44 3.05-1.14 3.05-1.14.6 1.52.22 2.66.11 2.94.71.78 1.14 1.77 1.14 2.98 0 4.27-2.59 5.2-5.06 5.48.4.34.75 1.01.75 2.04v3.1c0 .29.2.64.77.53A11.1 11.1 0 0 0 12 .9Z"/></svg><span>GitHub 源码</span></a></div>
-            <p class="plugin-summary">输入公式或使用选中的公式进行计算，获取结果。触发词：calc。</p>
-            <div class="plugin-meta"><span>QuickLauncher</span><span class="meta-dot">·</span><span>Ruby</span><span class="meta-dot">·</span><span>MIT</span><span class="meta-dot">·</span><span>需要新版 QuickLauncher</span></div>
+            <div class="plugin-title-row"><h3>计算器</h3><span class="version">版本待同步</span></div>
+            <p class="plugin-summary">输入公式，或使用前台应用选中的公式进行计算并获取结果。</p>
+            <div class="plugin-meta"><span>Ruby</span><span>MIT</span></div>
+            <p class="plugin-compatibility">需要新版 QuickLauncher</p>
           </div>
           <div class="plugin-actions">
-            <a class="plugin-action" href="quicklauncher://install?repo=peiel%2Fquicklauncher-calculator-plugin" aria-label="在 QuickLauncher 中打开计算器">在 QuickLauncher 中打开 <span aria-hidden="true">↗</span></a>
+            <a class="plugin-source" href="https://github.com/peiel/quicklauncher-calculator-plugin" target="_blank" rel="noopener noreferrer" aria-label="查看计算器的 GitHub 源码（在新窗口打开）">GitHub 源码 <span aria-hidden="true">↗</span></a>
+            <a class="plugin-action" href="quicklauncher://install?repo=peiel%2Fquicklauncher-calculator-plugin" aria-label="在 QuickLauncher 中打开计算器">在 QuickLauncher 中打开</a>
           </div>
         </article>
-        <article class="plugin-card" id="reminder-plugin" data-search="定时提醒 提醒 计时 通知 reminder remind" data-repository="peiel/quicklauncher-reminder-plugin">
-          <div class="plugin-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="15" fill="currentColor" opacity=".16"/><circle cx="24" cy="24" r="15" stroke="currentColor" stroke-width="2"/><path d="M24 15v9l6 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+        <article class="plugin-card" id="reminder-plugin" data-search="定时提醒 提醒 计时 通知 reminder remind remind 10m 喝水" data-repository="peiel/quicklauncher-reminder-plugin">
+          <div class="plugin-trigger"><code>remind</code><span>触发词</span></div>
           <div class="plugin-main">
-            <div class="plugin-title-row"><h3>定时提醒</h3><span class="version">版本待同步</span><a class="plugin-source" href="https://github.com/peiel/quicklauncher-reminder-plugin" target="_blank" rel="noopener noreferrer" aria-label="查看定时提醒的 GitHub 源码（在新窗口打开）"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.53v-2.08c-3.09.67-3.74-1.32-3.74-1.32-.5-1.28-1.23-1.62-1.23-1.62-1.01-.7.08-.69.08-.69 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.6 1.21 3.23.92.1-.72.39-1.21.71-1.49-2.46-.28-5.04-1.23-5.04-5.49 0-1.21.43-2.2 1.14-2.98-.12-.28-.5-1.42.11-2.94 0 0 .93-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.12-1.44 3.05-1.14 3.05-1.14.6 1.52.22 2.66.11 2.94.71.78 1.14 1.77 1.14 2.98 0 4.27-2.59 5.2-5.06 5.48.4.34.75 1.01.75 2.04v3.1c0 .29.2.64.77.53A11.1 11.1 0 0 0 12 .9Z"/></svg><span>GitHub 源码</span></a></div>
-            <p class="plugin-summary">例如输入 remind 10m 喝水，在指定时间后通过系统通知提醒。</p>
-            <div class="plugin-meta"><span>QuickLauncher</span><span class="meta-dot">·</span><span>Ruby</span><span class="meta-dot">·</span><span>MIT</span><span class="meta-dot">·</span><span>需要新版 QuickLauncher</span></div>
+            <div class="plugin-title-row"><h3>定时提醒</h3><span class="version">版本待同步</span></div>
+            <p class="plugin-summary">输入时间和提醒内容，在指定时间后通过系统通知提醒。</p>
+            <div class="plugin-meta"><span>Ruby</span><span>MIT</span></div>
+            <p class="plugin-compatibility">需要新版 QuickLauncher</p>
           </div>
           <div class="plugin-actions">
-            <a class="plugin-action" href="quicklauncher://install?repo=peiel%2Fquicklauncher-reminder-plugin" aria-label="在 QuickLauncher 中打开定时提醒">在 QuickLauncher 中打开 <span aria-hidden="true">↗</span></a>
+            <a class="plugin-source" href="https://github.com/peiel/quicklauncher-reminder-plugin" target="_blank" rel="noopener noreferrer" aria-label="查看定时提醒的 GitHub 源码（在新窗口打开）">GitHub 源码 <span aria-hidden="true">↗</span></a>
+            <a class="plugin-action" href="quicklauncher://install?repo=peiel%2Fquicklauncher-reminder-plugin" aria-label="在 QuickLauncher 中打开定时提醒">在 QuickLauncher 中打开</a>
           </div>
         </article>
-        <article class="plugin-card" id="timestamp-plugin" data-search="时间戳 转换 时间 日期 timestamp unix ts" data-repository="peiel/quicklauncher-timestamp-plugin">
-          <div class="plugin-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><rect x="10" y="11" width="28" height="27" rx="5" fill="currentColor" opacity=".16"/><rect x="10" y="11" width="28" height="27" rx="5" stroke="currentColor" stroke-width="2"/><path d="M10 19h28M17 8v6m14-6v6M17 25h5m-5 6h5m5-6h5m-5 6h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+
+        <article class="plugin-card" id="timestamp-plugin" data-search="时间戳 转换 时间 日期 timestamp unix ts ts now" data-repository="peiel/quicklauncher-timestamp-plugin">
+          <div class="plugin-trigger"><code>ts</code><span>触发词</span></div>
           <div class="plugin-main">
-            <div class="plugin-title-row"><h3>时间戳转换</h3><span class="version">版本待同步</span><a class="plugin-source" href="https://github.com/peiel/quicklauncher-timestamp-plugin" target="_blank" rel="noopener noreferrer" aria-label="查看时间戳转换的 GitHub 源码（在新窗口打开）"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.53v-2.08c-3.09.67-3.74-1.32-3.74-1.32-.5-1.28-1.23-1.62-1.23-1.62-1.01-.7.08-.69.08-.69 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.6 1.21 3.23.92.1-.72.39-1.21.71-1.49-2.46-.28-5.04-1.23-5.04-5.49 0-1.21.43-2.2 1.14-2.98-.12-.28-.5-1.42.11-2.94 0 0 .93-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.12-1.44 3.05-1.14 3.05-1.14.6 1.52.22 2.66.11 2.94.71.78 1.14 1.77 1.14 2.98 0 4.27-2.59 5.2-5.06 5.48.4.34.75 1.01.75 2.04v3.1c0 .29.2.64.77.53A11.1 11.1 0 0 0 12 .9Z"/></svg><span>GitHub 源码</span></a></div>
-            <p class="plugin-summary">输入 ts now 获取当前时间戳，或转换秒、毫秒时间戳为本地日期。</p>
-            <div class="plugin-meta"><span>QuickLauncher</span><span class="meta-dot">·</span><span>Ruby</span><span class="meta-dot">·</span><span>MIT</span><span class="meta-dot">·</span><span>需要新版 QuickLauncher</span></div>
+            <div class="plugin-title-row"><h3>时间戳转换</h3><span class="version">版本待同步</span></div>
+            <p class="plugin-summary">获取当前时间戳，或把秒、毫秒时间戳转换为本地日期。</p>
+            <div class="plugin-meta"><span>Ruby</span><span>MIT</span></div>
+            <p class="plugin-compatibility">需要新版 QuickLauncher</p>
           </div>
           <div class="plugin-actions">
-            <a class="plugin-action" href="quicklauncher://install?repo=peiel%2Fquicklauncher-timestamp-plugin" aria-label="在 QuickLauncher 中打开时间戳转换">在 QuickLauncher 中打开 <span aria-hidden="true">↗</span></a>
+            <a class="plugin-source" href="https://github.com/peiel/quicklauncher-timestamp-plugin" target="_blank" rel="noopener noreferrer" aria-label="查看时间戳转换的 GitHub 源码（在新窗口打开）">GitHub 源码 <span aria-hidden="true">↗</span></a>
+            <a class="plugin-action" href="quicklauncher://install?repo=peiel%2Fquicklauncher-timestamp-plugin" aria-label="在 QuickLauncher 中打开时间戳转换">在 QuickLauncher 中打开</a>
           </div>
         </article>
+
         <article class="plugin-card" id="text-stats-plugin" data-search="文本统计 字数 字符 词组 字节 选中文本 text stats textstats" data-repository="peiel/quicklauncher-text-stats-plugin">
-          <div class="plugin-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><rect x="11" y="8" width="26" height="32" rx="5" fill="currentColor" opacity=".16"/><rect x="11" y="8" width="26" height="32" rx="5" stroke="currentColor" stroke-width="2"/><path d="M17 17h14M17 23h14M17 29h9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="plugin-trigger"><code>textstats</code><span>触发词</span></div>
           <div class="plugin-main">
-            <div class="plugin-title-row"><h3>文本统计</h3><span class="version">版本待同步</span><a class="plugin-source" href="https://github.com/peiel/quicklauncher-text-stats-plugin" target="_blank" rel="noopener noreferrer" aria-label="查看文本统计的 GitHub 源码（在新窗口打开）"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.53v-2.08c-3.09.67-3.74-1.32-3.74-1.32-.5-1.28-1.23-1.62-1.23-1.62-1.01-.7.08-.69.08-.69 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.6 1.21 3.23.92.1-.72.39-1.21.71-1.49-2.46-.28-5.04-1.23-5.04-5.49 0-1.21.43-2.2 1.14-2.98-.12-.28-.5-1.42.11-2.94 0 0 .93-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.12-1.44 3.05-1.14 3.05-1.14.6 1.52.22 2.66.11 2.94.71.78 1.14 1.77 1.14 2.98 0 4.27-2.59 5.2-5.06 5.48.4.34.75 1.01.75 2.04v3.1c0 .29.2.64.77.53A11.1 11.1 0 0 0 12 .9Z"/></svg><span>GitHub 源码</span></a></div>
-            <p class="plugin-summary">统计输入或选中文字的字符、词组、行数和字节数。触发词：textstats。</p>
-            <div class="plugin-meta"><span>QuickLauncher</span><span class="meta-dot">·</span><span>Ruby</span><span class="meta-dot">·</span><span>MIT</span><span class="meta-dot">·</span><span>需要新版 QuickLauncher</span></div>
+            <div class="plugin-title-row"><h3>文本统计</h3><span class="version">版本待同步</span></div>
+            <p class="plugin-summary">统计输入或选中文字的字符、词组、行数和字节数。</p>
+            <div class="plugin-meta"><span>Ruby</span><span>MIT</span></div>
+            <p class="plugin-compatibility">需要新版 QuickLauncher</p>
           </div>
           <div class="plugin-actions">
-            <a class="plugin-action" href="quicklauncher://install?repo=peiel%2Fquicklauncher-text-stats-plugin" aria-label="在 QuickLauncher 中打开文本统计">在 QuickLauncher 中打开 <span aria-hidden="true">↗</span></a>
+            <a class="plugin-source" href="https://github.com/peiel/quicklauncher-text-stats-plugin" target="_blank" rel="noopener noreferrer" aria-label="查看文本统计的 GitHub 源码（在新窗口打开）">GitHub 源码 <span aria-hidden="true">↗</span></a>
+            <a class="plugin-action" href="quicklauncher://install?repo=peiel%2Fquicklauncher-text-stats-plugin" aria-label="在 QuickLauncher 中打开文本统计">在 QuickLauncher 中打开</a>
           </div>
         </article>
+
         <article class="plugin-card" id="url-codec-plugin" data-search="URL 参数 编码 解码 编解码 urlcodec percent" data-repository="peiel/quicklauncher-url-codec-plugin">
-          <div class="plugin-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><rect x="8" y="10" width="32" height="28" rx="6" fill="currentColor" opacity=".16"/><rect x="8" y="10" width="32" height="28" rx="6" stroke="currentColor" stroke-width="2"/><path d="m16 19-4 5 4 5m16-10 4 5-4 5M27 17l-6 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="plugin-trigger"><code>urlcodec</code><span>触发词</span></div>
           <div class="plugin-main">
-            <div class="plugin-title-row"><h3>URL 参数编解码</h3><span class="version">版本待同步</span><a class="plugin-source" href="https://github.com/peiel/quicklauncher-url-codec-plugin" target="_blank" rel="noopener noreferrer" aria-label="查看URL 参数编解码的 GitHub 源码（在新窗口打开）"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.53v-2.08c-3.09.67-3.74-1.32-3.74-1.32-.5-1.28-1.23-1.62-1.23-1.62-1.01-.7.08-.69.08-.69 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.6 1.21 3.23.92.1-.72.39-1.21.71-1.49-2.46-.28-5.04-1.23-5.04-5.49 0-1.21.43-2.2 1.14-2.98-.12-.28-.5-1.42.11-2.94 0 0 .93-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.12-1.44 3.05-1.14 3.05-1.14.6 1.52.22 2.66.11 2.94.71.78 1.14 1.77 1.14 2.98 0 4.27-2.59 5.2-5.06 5.48.4.34.75 1.01.75 2.04v3.1c0 .29.2.64.77.53A11.1 11.1 0 0 0 12 .9Z"/></svg><span>GitHub 源码</span></a></div>
-            <p class="plugin-summary">编码或解码输入的 URL 参数值，也可编码选中文字。触发词：urlcodec。</p>
-            <div class="plugin-meta"><span>QuickLauncher</span><span class="meta-dot">·</span><span>Ruby</span><span class="meta-dot">·</span><span>MIT</span><span class="meta-dot">·</span><span>需要新版 QuickLauncher</span></div>
+            <div class="plugin-title-row"><h3>URL 参数编解码</h3><span class="version">版本待同步</span></div>
+            <p class="plugin-summary">编码或解码输入的 URL 参数值，也可编码选中文字。</p>
+            <div class="plugin-meta"><span>Ruby</span><span>MIT</span></div>
+            <p class="plugin-compatibility">需要新版 QuickLauncher</p>
           </div>
           <div class="plugin-actions">
-            <a class="plugin-action" href="quicklauncher://install?repo=peiel%2Fquicklauncher-url-codec-plugin" aria-label="在 QuickLauncher 中打开URL 参数编解码">在 QuickLauncher 中打开 <span aria-hidden="true">↗</span></a>
+            <a class="plugin-source" href="https://github.com/peiel/quicklauncher-url-codec-plugin" target="_blank" rel="noopener noreferrer" aria-label="查看 URL 参数编解码的 GitHub 源码（在新窗口打开）">GitHub 源码 <span aria-hidden="true">↗</span></a>
+            <a class="plugin-action" href="quicklauncher://install?repo=peiel%2Fquicklauncher-url-codec-plugin" aria-label="在 QuickLauncher 中打开 URL 参数编解码">在 QuickLauncher 中打开</a>
           </div>
         </article>
-        <div id="empty-state" class="empty-state" hidden><strong>没有找到匹配的插件</strong><span>试试其他关键词。</span></div>
-        <div class="catalog-foot"><span>显示 <span id="result-count">6</span> 个插件</span><a href="install.html">查看安装说明 <span aria-hidden="true">↗</span></a></div>
+
+        <div id="empty-state" class="empty-state" hidden><strong>没有找到匹配的插件</strong><span>试试其他名称、用途或触发词。</span></div>
+        <div class="catalog-foot"><span>显示 <span id="result-count">6</span> 个插件</span><a href="install.html">查看安装说明</a></div>
       </section>
 
-      <footer><span>QuickLauncher 插件目录</span><span>为你的日常工作准备。</span></footer>
+      <footer><span>QuickLauncher 插件目录</span><a href="developer.html">开发者指南</a></footer>
     </div>
   </main>
 </body>

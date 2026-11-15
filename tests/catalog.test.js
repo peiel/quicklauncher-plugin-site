@@ -49,6 +49,9 @@ search('timestamp', ['timestamp-plugin']);
 search('时间戳', ['timestamp-plugin']);
 search('textstats', ['text-stats-plugin']);
 search('urlcodec', ['url-codec-plugin']);
+search('32', ['password-plugin']);
+search('10m', ['reminder-plugin']);
+search('now', ['timestamp-plugin']);
 search('不存在', []);
 search('', cards.map((card) => card.id));
 
