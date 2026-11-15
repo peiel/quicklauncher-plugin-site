@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="发现适用于 QuickLauncher 的开源插件，查看源码和安装说明。">
+  <title>插件目录 · QuickLauncher</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="./" aria-label="QuickLauncher 插件目录首页">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3.5 20.5 12 12 20.5 3.5 12 12 3.5Z" fill="currentColor"/><path d="m9.1 12 1.8 1.8 4.1-4.1" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>QuickLauncher<span class="brand-divider">/</span><span class="brand-product">插件目录</span></span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="https://github.com/peiel/quicklauncher-password-plugin" target="_blank" rel="noopener noreferrer">开源仓库 <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar" aria-label="目录导航">
+      <p class="sidebar-heading">浏览</p>
+      <a class="sidebar-link active" href="#plugins" aria-current="page"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="12" y="3" width="5" height="5" rx="1"/><rect x="3" y="12" width="5" height="5" rx="1"/><rect x="12" y="12" width="5" height="5" rx="1"/></svg>所有插件<span>1</span></a>
+      <p class="sidebar-heading sidebar-second">了解更多</p>
+      <a class="sidebar-link" href="#install"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.7v9.6m-3-3 3 3 3-3M3.5 14v2.2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V14"/></svg>安装指南</a>
+      <div class="sidebar-note"><span class="note-dot"></span><span>插件在本机运行。<br>安装前请检查源码。</span></div>
+    </aside>
+
+    <div class="content" id="plugins">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> QUICKLAUNCHER / PLUGINS</div>
+      <div class="intro">
+        <div><h1>插件目录</h1><p>把常用的小功能，放进你的启动器。</p></div>
+        <div class="open-source"><span class="open-dot"></span>开源 · 本地运行</div>
+      </div>
+
+      <section class="catalog" aria-labelledby="catalog-heading">
+        <div class="catalog-top">
+          <div><h2 id="catalog-heading">所有插件 <span class="count" id="plugin-count">1</span></h2><p>发现可以在 QuickLauncher 中使用的插件。</p></div>
+          <div class="search-wrap"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m12.5 12.5 4 4"/></svg><label class="visually-hidden" for="plugin-search">搜索插件</label><input id="plugin-search" type="search" placeholder="搜索插件" autocomplete="off"></div>
+        </div>
+        <p class="search-status visually-hidden" id="search-status" role="status" aria-live="polite"></p>
+        <article class="plugin-card" id="password-plugin" data-search="密码生成 password pwd gpwd 随机 强密码">
+          <div class="plugin-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><rect x="12" y="21" width="24" height="18" rx="5" fill="currentColor" opacity=".16"/><path d="M17 21v-5.1a7 7 0 0 1 14 0V21M15.7 21h16.6a3.7 3.7 0 0 1 3.7 3.7v10.6a3.7 3.7 0 0 1-3.7 3.7H15.7a3.7 3.7 0 0 1-3.7-3.7V24.7a3.7 3.7 0 0 1 3.7-3.7ZM24 28v4" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></div>
+          <div class="plugin-main">
+            <div class="plugin-title-row"><h3>密码生成</h3><span class="version">v1.1.0</span></div>
+            <p class="plugin-summary">安全生成随机强密码，回车即可复制到剪贴板。支持自定义长度。</p>
+            <div class="plugin-meta"><span>QuickLauncher</span><span class="meta-dot">·</span><span>Shell</span><span class="meta-dot">·</span><span>MIT</span></div>
+          </div>
+          <a class="plugin-action" href="#install">安装说明 <span aria-hidden="true">↗</span></a>
+        </article>
+        <div id="empty-state" class="empty-state" hidden><strong>没有找到匹配的插件</strong><span>试试其他关键词。</span></div>
+        <div class="catalog-foot"><span>显示 <span id="result-count">1</span> 个插件</span><a href="https://github.com/peiel/quicklauncher-password-plugin" target="_blank" rel="noopener noreferrer">查看插件源码 <span aria-hidden="true">↗</span></a></div>
+      </section>
+
+      <section class="details" id="install" aria-labelledby="install-heading">
+        <div class="details-heading"><div><p class="section-label">GET STARTED</p><h2 id="install-heading">安装密码生成插件</h2></div><a class="release-link" href="https://github.com/peiel/quicklauncher-password-plugin/releases/tag/v1.1.0" target="_blank" rel="noopener noreferrer">查看 v1.1.0 Release <span aria-hidden="true">↗</span></a></div>
+        <p class="details-intro">当前通过 QuickLauncher 内的 GitHub 插件入口安装。安装前可以查看版本、源码和文件变化。</p>
+        <div class="install-grid">
+          <ol class="steps">
+            <li><span class="step-number">01</span><div><strong>打开插件设置</strong><p>在 QuickLauncher 中进入「设置 → 脚本与插件 → 发现插件」。</p></div></li>
+            <li><span class="step-number">02</span><div><strong>查找并审查插件</strong><p>输入下方仓库名，选择「查看并安装」，审查内容后确认。</p><code>peiel/quicklauncher-password-plugin</code></div></li>
+            <li><span class="step-number">03</span><div><strong>启用并使用</strong><p>安装后在「已安装」中启用插件。输入 <code>gpwd</code>，或输入 <code>gpwd 32</code> 指定长度。</p></div></li>
+          </ol>
+          <aside class="security-card"><div class="security-icon" aria-hidden="true">✳</div><h3>使用前了解</h3><p>插件以当前用户身份运行。请只安装信任的代码，并在启用前检查来源和内容。</p><a href="https://github.com/peiel/quicklauncher-password-plugin" target="_blank" rel="noopener noreferrer">查看 GitHub 源码 <span aria-hidden="true">↗</span></a></aside>
+        </div>
+      </section>
+      <footer><span>QuickLauncher 插件目录</span><span>为你的日常工作准备。</span></footer>
+    </div>
+  </main>
+</body>
+</html>
