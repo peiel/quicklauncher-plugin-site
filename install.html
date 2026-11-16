@@ -4,16 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#f5f6f8">
+  <meta name="theme-color" content="#ffffff">
   <meta name="description" content="了解如何在 QuickLauncher 中审核、安装并启用插件。">
   <title>安装指南 · QuickLauncher 插件目录</title>
-  <link rel="stylesheet" href="styles.css?v=20261115-8">
+  <link rel="icon" href="assets/mark.svg?v=33d8d9871cc1" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=4780c6485f51">
 </head>
 <body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="./" aria-label="QuickLauncher 插件目录首页">
-        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3.5 20.5 12 12 20.5 3.5 12 12 3.5Z" fill="currentColor"/><path d="m9.1 12 1.8 1.8 4.1-4.1" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <img src="assets/mark.svg?v=33d8d9871cc1" width="30" height="30" alt="">
         <span>QuickLauncher<span class="brand-divider">/</span><span class="brand-product">插件目录</span></span>
       </a>
       <nav aria-label="主导航">
@@ -25,42 +27,47 @@
     </div>
   </header>
 
-  <main class="layout catalog-layout install-page">
+  <main id="main" class="layout catalog-layout install-page">
     <div class="content">
-      <div class="intro install-intro"><div><h1>安装指南</h1><p>从目录选择插件，经过你的检查与确认，再开始使用。</p></div></div>
+      <div class="intro install-intro"><div><h1>安装指南</h1><p>在 Mac 上选择插件，检查来源与文件，确认后开始使用。</p><p class="install-prerequisite">还没有应用？<a href="https://quicklauncher.flyee.tech/install.html">下载并安装 QuickLauncher</a>。手机可以浏览目录，插件安装请在 Mac 上完成。</p></div></div>
 
       <div class="install-guide-grid">
         <section class="install-panel" id="install" aria-labelledby="install-heading">
           <div class="install-panel-heading"><h2 id="install-heading">安装一个插件</h2><span class="install-step-count">3 个步骤</span></div>
-          <ol class="install-steps">
+          <ol class="install-steps" role="list">
             <li>
               <span class="install-number" aria-hidden="true">1</span>
-              <div><h3>在 QuickLauncher 中打开</h3><p>前往<a href="./">插件目录</a>，点击插件卡片上的「在 QuickLauncher 中打开」。浏览器可能会询问是否允许打开应用。</p></div>
+              <div><h3>在 QuickLauncher 中打开</h3><p>前往<a href="./">插件目录</a>，选择「在 QuickLauncher 中打开」。浏览器询问时，允许打开已安装的 QuickLauncher。</p></div>
             </li>
             <li>
               <span class="install-number" aria-hidden="true">2</span>
-              <div><h3>审查并安装</h3><p>应用会从 GitHub 获取插件。在 QuickLauncher 中检查来源、版本和文件变化，确认后安装。</p></div>
+              <div><h3>检查后，确认安装</h3><p>应用会从 GitHub 获取插件。检查来源、版本和插件文件，确认后才会安装。</p></div>
             </li>
             <li>
               <span class="install-number" aria-hidden="true">3</span>
-              <div><h3>启用并使用</h3><p>支持自动启用的 QuickLauncher 版本在确认安装后会启用插件并打开「已安装」；旧版请手动启用。查看源码了解使用方法。</p></div>
+              <div><h3>开始使用</h3><p>新版 QuickLauncher 会在确认安装后默认启用插件，并切换到「已安装」。在插件详情中查看触发词和用法，也可以随时停用；旧版请先更新应用。</p></div>
             </li>
           </ol>
         </section>
 
         <aside class="install-sidebar" aria-label="安装提示">
           <section class="install-note">
-            <h2>安装前检查</h2>
-            <p>插件以当前用户身份运行。请在确认安装前检查来源和内容，只安装信任的代码。</p>
+            <h2>先了解运行方式</h2>
+            <p>插件以当前用户身份运行，可能访问本机文件和网络。请只安装并启用你信任的代码。</p>
+            <p>支持触发词预览的已启用插件，会在输入匹配时自动执行。被动触发也会自动运行，须插件已启用、规则匹配且独立开关允许；可在插件设置中关闭被动触发。</p>
           </section>
           <section class="install-help">
-            <h2>无法打开应用？</h2>
-            <p>请确认已安装新版 QuickLauncher，或在「设置 → 插件 → 发现插件」中搜索对应 GitHub 仓库名，再选择「查看并安装」。计算器和提醒插件需要新版 QuickLauncher。</p>
+            <h2>链接打不开？</h2>
+            <p>先确认已安装新版 QuickLauncher。也可以在「设置 → 插件 → 发现插件」中输入对应 GitHub 仓库名，再选择「查看并安装」。</p>
+          </section>
+          <section class="install-help">
+            <h2>权限按需授予</h2>
+            <p>选中文字、通知等能力可能需要不同的 macOS 权限。在「设置 → 权限」查看用途，由你决定是否授权。<a href="https://quicklauncher.flyee.tech/privacy.html#privacy-permissions">了解系统权限</a>。</p>
           </section>
         </aside>
       </div>
-      <footer><span>QuickLauncher 插件目录</span><a href="./">返回插件目录</a></footer>
     </div>
   </main>
+  <footer class="footer"><div class="footer-identity"><a class="brand" href="https://quicklauncher.flyee.tech/"><img src="assets/mark.svg?v=33d8d9871cc1" width="26" height="26" alt="">QuickLauncher</a><p>让常用操作，更顺手。</p></div><nav class="footer-links" aria-label="页脚导航"><a href="https://quicklauncher.flyee.tech/">产品官网</a><a href="./">插件目录</a><a href="developer.html">开发者指南</a></nav></footer>
 </body>
 </html>
