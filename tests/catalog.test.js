@@ -8,7 +8,7 @@ const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const installation = fs.readFileSync(path.join(root, 'install.html'), 'utf8');
 const cards = [...html.matchAll(/<article class="plugin-card" id="([^"]+)" data-search="([^"]+)" data-repository="([^"]+)">/g)]
   .map((match) => ({ id: match[1], dataset: { search: match[2], repository: match[3] }, hidden: false, querySelector: () => ({}) }));
-assert.deepEqual(cards.map((card) => card.id), ['password-plugin', 'calculator-plugin', 'reminder-plugin', 'timestamp-plugin', 'date-plugin', 'time-plugin', 'text-stats-plugin', 'url-codec-plugin']);
+assert.deepEqual(cards.map((card) => card.id), ['password-plugin', 'calculator-plugin', 'reminder-plugin', 'timestamp-plugin', 'date-plugin', 'time-plugin', 'text-stats-plugin', 'url-codec-plugin', 'pinyin-plugin']);
 const repositories = JSON.parse(fs.readFileSync(path.join(root, 'catalog-repositories.json'), 'utf8'));
 assert.deepEqual(repositories, cards.map((card) => card.dataset.repository), '插件卡片与目录收录仓库应一致');
 for (const id of ['date-plugin', 'time-plugin']) {
@@ -28,7 +28,7 @@ const document = {
   querySelectorAll: (selector) => selector === '.plugin-card' ? cards : []
 };
 vm.runInNewContext(fs.readFileSync(path.join(root, 'app.js'), 'utf8'), { document, fetch: () => Promise.reject(new Error('offline')) });
-assert.equal(elements['plugin-count'].textContent, '8');
+assert.equal(elements['plugin-count'].textContent, '9');
 assert.ok(!html.includes('id="sidebar-count"'));
 assert.match(html, /插件目录<\/a>\s*<a href="install\.html">安装指南<\/a>\s*<a href="developer\.html">开发者<\/a>/);
 assert.match(installation, /插件目录<\/a>\s*<a class="nav-current" href="install\.html" aria-current="page">安装指南<\/a>\s*<a href="developer\.html">开发者<\/a>/);
@@ -60,13 +60,17 @@ search('日期时间', ['time-plugin']);
 search('年月日时分秒', ['time-plugin']);
 search('textstats', ['text-stats-plugin']);
 search('urlcodec', ['url-codec-plugin']);
+search('拼音', ['pinyin-plugin']);
+search('注音', ['pinyin-plugin']);
+search('py', ['pinyin-plugin']);
+search('pinyin', ['pinyin-plugin']);
 search('32', ['password-plugin']);
 search('10m', ['reminder-plugin']);
 search('now', ['timestamp-plugin']);
 search('不存在', []);
 search('', cards.map((card) => card.id));
 
-for (const repo of ['quicklauncher-password-plugin', 'quicklauncher-calculator-plugin', 'quicklauncher-reminder-plugin', 'quicklauncher-timestamp-plugin', 'quicklauncher-date-plugin', 'quicklauncher-time-plugin', 'quicklauncher-text-stats-plugin', 'quicklauncher-url-codec-plugin']) {
+for (const repo of ['quicklauncher-password-plugin', 'quicklauncher-calculator-plugin', 'quicklauncher-reminder-plugin', 'quicklauncher-timestamp-plugin', 'quicklauncher-date-plugin', 'quicklauncher-time-plugin', 'quicklauncher-text-stats-plugin', 'quicklauncher-url-codec-plugin', 'quicklauncher-pinyin-plugin']) {
   const deepLink = `quicklauncher://install?repo=peiel%2F${repo}`;
   const github = `https://github.com/peiel/${repo}`;
   assert.ok(html.includes(`href="${deepLink}"`), deepLink);
