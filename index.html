@@ -37,7 +37,7 @@
 
       <section class="catalog" aria-labelledby="catalog-heading">
         <div class="catalog-top">
-          <div><h2 id="catalog-heading">全部插件 <span class="count" id="plugin-count">8</span></h2><p>按名称、用途或触发词搜索。</p></div>
+          <div><h2 id="catalog-heading">全部插件 <span class="count" id="plugin-count">9</span></h2><p>按名称、用途或触发词搜索。</p></div>
           <div class="search-wrap"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m12.5 12.5 4 4"/></svg><label class="visually-hidden" for="plugin-search">搜索插件</label><input id="plugin-search" type="search" placeholder="搜索插件或触发词" autocomplete="off"></div>
         </div>
         <p class="install-context">点击「在 QuickLauncher 中打开」，在应用中查看来源与文件，确认后安装并启用。</p>
@@ -242,8 +242,33 @@
           </div>
         </article>
 
+        <article class="plugin-card" id="pinyin-plugin" data-search="拼音 注音 汉语 声调 汉字 pinyin py" data-repository="peiel/quicklauncher-pinyin-plugin">
+          <div class="plugin-trigger"><code>py</code><span>触发词</span></div>
+          <div class="plugin-main">
+            <div class="plugin-title-row"><h3>拼音注音</h3><span class="version">版本待同步</span></div>
+            <p class="plugin-summary">将输入或选中的中文转换为带声调拼音并复制。</p>
+            <details class="plugin-details">
+              <summary><span>用法与详情<span class="visually-hidden">：拼音注音</span></span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></summary>
+              <div class="detail-body">
+                <h4>在搜索框中输入</h4>
+                <ul class="usage-examples">
+                  <li><code>py 你好</code><span>显示并复制 nǐ hǎo</span></li>
+                  <li><code>py</code><span>转换前台应用选中文字</span></li>
+                </ul>
+                <p class="usage-note">结合词组字典为多音字注音，非中文字符原样保留；结果超过 200 字符或包含控制、格式字符时会提示错误。使用选中文字时，需要按需授予辅助功能权限。转换在本机离线完成，不联网、不读取剪贴板。</p>
+                <div class="detail-meta"><div class="plugin-meta"><span>Python 3</span><span>MIT</span></div><p class="plugin-compatibility">需要新版 QuickLauncher</p></div>
+                <p class="repository-name"><span>GitHub 仓库</span><code>peiel/quicklauncher-pinyin-plugin</code></p>
+              </div>
+            </details>
+          </div>
+          <div class="plugin-actions">
+            <a class="plugin-action" href="quicklauncher://install?repo=peiel%2Fquicklauncher-pinyin-plugin" aria-label="在 QuickLauncher 中打开拼音注音">在 QuickLauncher 中打开</a>
+            <a class="plugin-source" href="https://github.com/peiel/quicklauncher-pinyin-plugin" target="_blank" rel="noopener noreferrer" aria-label="查看拼音注音的 GitHub 源码（在新窗口打开）">GitHub 源码 <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
         <div id="empty-state" class="empty-state" hidden><strong>没有找到匹配的插件</strong><span>试试其他名称、用途或触发词。</span></div>
-        <div class="catalog-foot"><span>显示 <span id="result-count">8</span> 个插件</span><a href="install.html">查看安装说明</a></div>
+        <div class="catalog-foot"><span>显示 <span id="result-count">9</span> 个插件</span><a href="install.html">查看安装说明</a></div>
       </section>
 
       <aside class="catalog-help" aria-labelledby="catalog-help-title">

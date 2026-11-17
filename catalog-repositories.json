@@ -6,5 +6,6 @@
   "peiel/quicklauncher-date-plugin",
   "peiel/quicklauncher-time-plugin",
   "peiel/quicklauncher-text-stats-plugin",
-  "peiel/quicklauncher-url-codec-plugin"
+  "peiel/quicklauncher-url-codec-plugin",
+  "peiel/quicklauncher-pinyin-plugin"
 ]
