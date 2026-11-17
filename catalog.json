@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": 1794884182,
+  "generatedAt": 1794922007,
   "entries": [
     {
       "repositoryID": 1458697776,
@@ -105,6 +105,19 @@
       "sha256": "eb86b02a2eabc1a4f271fdd1c37087694151c5ecbe7031c99e96e379831a8190",
       "assetSize": 8976,
       "assetURL": "https://github.com/peiel/quicklauncher-url-codec-plugin/releases/download/v1.0.0/url-codec.quicklauncher.json"
+    },
+    {
+      "repositoryID": 1460831162,
+      "fullName": "peiel/quicklauncher-pinyin-plugin",
+      "description": "QuickLauncher 拼音注音插件：输入 py 中文或选中文字，输出带声调拼音并复制",
+      "repositoryURL": "https://github.com/peiel/quicklauncher-pinyin-plugin",
+      "releaseID": 448017271,
+      "assetID": 757347917,
+      "tag": "v1.0.0",
+      "commit": "bc3d9856c8d3132c0000562e4f23e56df90d3932",
+      "sha256": "5c53699c04751a5842e0a06ba360aace045164acc326505a4f1b57d7c1b0402b",
+      "assetSize": 4640962,
+      "assetURL": "https://github.com/peiel/quicklauncher-pinyin-plugin/releases/download/v1.0.0/quicklauncher-pinyin-plugin-v1.0.0.quicklauncher.json"
     }
   ]
 }
